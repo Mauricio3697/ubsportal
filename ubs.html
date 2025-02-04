@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UBS Portal das Laranjeiras - Informações</title>
+  <style>
+    /* Reset e configuração global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    /* Modo noturno */
+    body.dark {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    body.dark header,
+    body.dark footer,
+    body.dark nav,
+    body.dark table th {
+      background-color: #1f1f1f;
+    }
+    body.dark nav a {
+      color: #e0e0e0;
+    }
+    body.dark .container {
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+    }
+    body.dark .street-button {
+      background-color: #007bff;
+      border: 2px solid transparent;
+    }
+    body.dark .street-button:hover {
+      background-color: #0056b3;
+      border: 2px solid #1f1f1f;
+    }
+    body.dark table,
+    body.dark table th,
+    body.dark table td {
+      border-color: #444;
+    }
+    body.dark .salva-vidas-btn {
+      background-color: #ff4d4d;
+    }
+    body.dark .salva-vidas-btn:hover {
+      background-color: #cc0000;
+    }
+    body.dark .salva-vidas-info {
+      background-color: #2a2a2a;
+      border-color: #555;
+      color: #e0e0e0;
+    }
+    /* Estilos gerais para listas */
+    ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    /* Cabeçalho */
+    header {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .logo-container img {
+      max-height: 80px;
+      width: auto;
+    }
+    /* Botão para alternar o modo noturno */
+    .toggle-dark-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+    .toggle-dark-btn:hover {
+      background-color: #0056b3;
+    }
+    /* Menu de Navegação */
+    nav {
+      background-color: #00264d;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    /* Container Principal */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    /* Botões de Rua (ACS) */
+    .street-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      margin: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid transparent;
+    }
+    .street-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+      border: 2px solid #003366;
+    }
+    /* Informações dos Agentes (exibidos ao clicar em uma rua) */
+    .agent-info {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f8ff;
+      border: 1px solid #003366;
+      border-radius: 5px;
+      display: none;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .agent-info img {
+      max-width: 100px;
+      border-radius: 50%;
+      margin: 10px auto;
+      display: block;
+    }
+    /* Tabelas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background-color: #003366;
+      color: white;
+    }
+    /* Rodapé */
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      margin-top: 20px;
+    }
+    /* Fluxo de Planejamento Familiar */
+    .family-planning-flow {
+      background-color: #e6f3ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px auto;
+    }
+    .family-planning-flow h3 {
+      color: #003366;
+    }
+    /* Dias de Coleta */
+    .collection-days {
+      background-color: #fff3cd;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px auto;
+    }
+    .collection-days h3 {
+      color: #856404;
+    }
+    /* Botão Salva Vidas */
+    .salva-vidas-btn {
+      display: block;
+      background-color: #ff4d4d;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin: 20px auto;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 80%;
+      max-width: 200px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+    }
+    .salva-vidas-btn:hover {
+      background-color: #cc0000;
+    }
+    /* Seção Salva Vidas */
+    .salva-vidas-info {
+      display: none;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      border-radius: 20px;
+      text-align: left;
+      width: 80%;
+      max-width: 600px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .salva-vidas-info h3 {
+      color: #721c24;
+      text-align: center;
+    }
+    /* Seção Equipes de Saúde da Família */
+    .esf-teams {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #e9f7ef;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .esf-teams h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+    .esf-team {
+      margin-bottom: 20px;
+    }
+    .esf-team h3 {
+      color: #1b5e20;
+      margin-bottom: 10px;
+    }
+    .esf-team ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    .esf-team ul li {
+      margin-bottom: 5px;
+    }
+    /* Seção Mapa do Google */
+    .google-map {
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    .google-map iframe {
+      width: 100%;
+      height: 480px;
+      border: 0;
+    }
+    /* Seção Organização dos ACS e suas Ruas (Cartões com rosto dos ACS) */
+    .acs-list-container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #e3f2fd;
+      border-radius: 8px;
+    }
+    .acs-list-container h2 {
+      text-align: center;
+      color: #0d47a1;
+      margin-bottom: 10px;
+    }
+    .acs-card {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .acs-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .acs-card .acs-details {
+      flex: 1;
+    }
+    .acs-card .acs-details strong {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 5px;
+    }
+    /* Responsividade para imagens */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão para alternar modo noturno/diurno -->
+  <button class="toggle-dark-btn" id="toggleDarkBtn">Modo Noturno</button>
+
+  <!-- Menu de Navegação -->
+  <nav>
+    <a href="#mapa-acs">Mapa dos ACS'S</a>
+    <a href="#atendimentos">Atendimentos</a>
+    <a href="#contato">Contato</a>
+    <a href="#planejamento-familiar">Planejamento Familiar</a>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logo-container">
+      <img src="logo-prefeitura-2021.png" alt="Logo da Prefeitura de Caieiras">
+      <h1>UBS Portal das Laranjeiras</h1>
+    </div>
+    <p>Serviços e Informações para a Comunidade</p>
+  </header>
+
+  <!-- Botão Salva Vidas e Seção de Procedimentos de Emergência -->
+  <button class="salva-vidas-btn" id="salvaVidasBtn">Salva Vidas</button>
+  <div class="salva-vidas-info" id="salvaVidasInfo">
+    <h3>Procedimentos de Emergência</h3>
+    <p><strong>RCP (Ressuscitação Cardiopulmonar):</strong></p>
+    <img src="rcp.jpg" alt="Demonstração de RCP" width="200">
+    <ul>
+      <li>Posicione as mãos sobre o centro do peito da vítima.</li>
+      <li>Realize 30 compressões torácicas seguidas de 2 ventilações.</li>
+      <li>Continue até a chegada do socorro ou a vítima recuperar os sinais vitais.</li>
+    </ul>
+    <p><strong>Pressão Arterial:</strong></p>
+    <img src="pressao.jpg" alt="Medição de Pressão" width="200">
+    <ul>
+      <li><strong>Hipertensão (Pressão Alta):</strong> Pode causar AVC, infarto e insuficiência renal.</li>
+      <li><strong>Hipotensão (Pressão Baixa):</strong> Pode causar tontura, desmaios e choque circulatório.</li>
+      <li>Se alta: evite sal, relaxe e procure ajuda médica.</li>
+      <li>Se baixa: beba água, deite-se e levante as pernas.</li>
+    </ul>
+    <p><strong>Infarto (Ataque Cardíaco):</strong></p>
+    <img src="infarto.jpg" alt="Sinais de infarto" width="200">
+    <ul>
+      <li>Dor intensa no peito, irradiando para braço e mandíbula.</li>
+      <li>Dificuldade para respirar, suor excessivo e náusea.</li>
+      <li>Chame o socorro imediatamente e mantenha a vítima calma.</li>
+    </ul>
+    <p><strong>Engasgo:</strong></p>
+    <img src="engasgo.jpg" alt="Manobra de Heimlich" width="200">
+    <ul>
+      <li>Se a pessoa não conseguir respirar ou falar, realize a manobra de Heimlich.</li>
+      <li>Fique atrás, pressione a barriga para cima com força.</li>
+      <li>Repita até o objeto ser expelido ou a vítima desmaiar.</li>
+    </ul>
+    <p><strong>Afogamento:</strong></p>
+    <img src="afogamento.jpg" alt="Resgate em afogamento" width="200">
+    <ul>
+      <li>Retire a vítima da água com segurança.</li>
+      <li>Se não respirar, inicie a RCP imediatamente.</li>
+      <li>Evite entrar na água se não tiver treinamento adequado.</li>
+    </ul>
+    <p><strong>Choque Elétrico:</strong></p>
+    <img src="choque.jpg" alt="Primeiros socorros para choque elétrico" width="200">
+    <ul>
+      <li>Desligue a fonte de energia antes de tocar na vítima.</li>
+      <li>Se não respirar, inicie a RCP.</li>
+      <li>Leve a vítima ao hospital, pois choques podem causar danos internos.</li>
+    </ul>
+    <p><strong>Picadas de Animais Peçonhentos:</strong></p>
+    <img src="picada.jpg" alt="Picada de cobra" width="200">
+    <ul>
+      <li>Mantenha a vítima calma e imóvel.</li>
+      <li>Não tente sugar o veneno ou cortar o local.</li>
+      <li>Leve a vítima rapidamente ao hospital e, se possível, identifique o animal.</li>
+    </ul>
+    <p><strong>Números de Emergência:</strong></p>
+    <ul>
+      <li><strong>SAUR:</strong> 192</li>
+      <li><strong>Bombeiros:</strong> 193</li>
+      <li><strong>Polícia Militar:</strong> 190</li>
+      <li><strong>Guarda Municipal:</strong> 153</li>
+    </ul>
+  </div>
+
+  <!-- Atendimentos Médicos e Especialistas -->
+  <section id="atendimentos" class="container">
+    <h2>Atendimentos Médicos e Especialistas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Especialidade</th>
+          <th>Profissional</th>
+          <th>Dias/Horários</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sala 02 - Médica da Família</td>
+          <td>Bianca</td>
+          <td>Todos os dias</td>
+        </tr>
+        <tr>
+          <td>Sala 01 - Médica da Família</td>
+          <td>Middy</td>
+          <td>Terça a Sexta-feira; Segunda-feira: vago</td>
+        </tr>
+        <tr>
+          <td>Pediatria</td>
+          <td>Nairobi</td>
+          <td>Segunda-feira</td>
+        </tr>
+        <tr>
+          <td>Ginecologia</td>
+          <td>José Adalberto</td>
+          <td>Sexta-feira</td>
+        </tr>
+        <tr>
+          <td>Psicologia</td>
+          <td>Liege</td>
+          <td>Quarta e Quinta-feira</td>
+        </tr>
+        <tr>
+          <td>Nutrição</td>
+          <td>Tatiane</td>
+          <td>Quinta-feira</td>
+        </tr>
+        <tr>
+          <td>Odontologia</td>
+          <td>Ana</td>
+          <td>Sexta-feira</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Seção Mapa dos ACS (Geração Dinâmica dos Botões) -->
+  <section id="mapa-acs" class="container">
+    <h2>Locais de Atuação dos Agentes Comunitários de Saúde (ACS)</h2>
+    <p>Clique em uma rua para ver os ACS responsáveis:</p>
+    <div id="acs-buttons" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+    <div class="agent-info" id="agentInfo">
+      <div class="agent-group" id="agentGroup"></div>
+    </div>
+  </section>
+
+  <!-- Seção Equipes de Saúde da Família -->
+  <section class="esf-teams">
+    <h2>Equipes de Saúde da Família</h2>
+    <div class="esf-team">
+      <h3>ESF 1</h3>
+      <ul>
+        <li>Middihan Nascimento (Enfermeira)</li>
+        <li>Enfermeira Márcia Cruz</li>
+        <li>ACS Luana</li>
+        <li>ACS Nadieli</li>
+        <li>ACS Sol</li>
+        <li>ACS Kelly</li>
+        <li>ACS Susana</li>
+        <li>ACS Fernanda</li>
+        <li>ACS Patrícia</li>
+        <li>ACS Débora</li>
+        <li>ACS Bruna</li>
+      </ul>
+    </div>
+    <div class="esf-team">
+      <h3>ESF 2</h3>
+      <ul>
+        <li>Enfermeira Thais</li>
+        <li>ACS Vanessa</li>
+        <li>ACS Vitor</li>
+        <li>ACS Maylon</li>
+        <li>ACS Marina</li>
+        <li>ACS Felix</li>
+        <li>ACS Regina</li>
+        <li>ACS Tais</li>
+        <li>ACS Kesia</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Seção Mapa Interativo dos ACS (Google My Maps) -->
+  <section class="google-map">
+    <h2 style="text-align: center; margin-bottom: 10px;">Mapa Interativo dos ACS</h2>
+    <iframe src="https://www.google.com/maps/d/embed?mid=1TDeBCfmphzIY84dMG7EREvpagVIvzRg" allowfullscreen></iframe>
+  </section>
+
+  <!-- Seção Organização dos ACS e suas Ruas (Cartões com rosto dos ACS) -->
+  <section id="acs-list-container" class="acs-list-container">
+    <h2>Organização dos ACS e suas Ruas</h2>
+    <div id="acs-list"></div>
+  </section>
+
+  <!-- Cronograma da Enfermeira Thais -->
+  <section class="container">
+    <h2>Cronograma da Enfermeira Thais</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Dia</th>
+          <th>Atividades</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Segunda-feira</td>
+          <td>Pré-natal e Puerpera, Demanda Espontânea, Verificação de e-mails (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Terça-feira</td>
+          <td>Papanicolaou, Demanda Espontânea (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Quarta-feira</td>
+          <td>Papanicolaou, Impressão de Resultados de Papa Semanal (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Quinta-feira</td>
+          <td>Planejamento Familiar, Verificar Processos de Planejamento (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Sexta-feira</td>
+          <td>Reunião de Equipe, Atendimento na Pediatria</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Cronograma da Enfermeira Márcia Cruz -->
+  <section class="container">
+    <h2>Cronograma da Enfermeira Márcia Cruz</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Dia</th>
+          <th>Atividades</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Segunda-feira</td>
+          <td>Pré-natal e Puerpera, Demanda Espontânea, Verificação de e-mails (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Terça-feira</td>
+          <td>Papanicolaou, Demanda Espontânea (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Quarta-feira</td>
+          <td>Papanicolaou, Envio das lâminas de Papanicolaou (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Quinta-feira</td>
+          <td>Planejamento Familiar, Verificar processos de planejamento (Sala GO)</td>
+        </tr>
+        <tr>
+          <td>Sexta-feira</td>
+          <td>Reunião de Equipe, Atendimento na Pediatria</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Dias de Coleta -->
+  <section class="container collection-days">
+    <h3>Dias de Coleta</h3>
+    <ul>
+      <li><strong>Segunda-feira:</strong> Coletas na última semana do mês.</li>
+      <li><strong>Quarta-feira:</strong> Visita à tarde.</li>
+      <li><strong>Quinta-feira:</strong> Visita pela manhã.</li>
+    </ul>
+  </section>
+
+  <!-- Seção Contato -->
+  <section id="contato" class="container">
+    <h2>Localização e Contato</h2>
+    <p><strong>Endereço:</strong> Rua Cardeal, Portal das Laranjeiras</p>
+    <p><strong>Telefone:</strong> (11) 4800-5024</p>
+    <p><strong>CNES:</strong> 4737423</p>
+  </section>
+
+  <!-- Fluxo de Planejamento Familiar -->
+  <section class="container family-planning-flow" id="planejamento-familiar">
+    <h3>Fluxo do Planejamento Familiar - Vasectomia e Laqueadura</h3>
+    <ul>
+      <li>Agendar consulta com o enfermeiro na recepção, onde deve ser entregue o papel com data e horário da consulta, além dos documentos necessários para trazer, e o paciente deve ser orientado sobre isso.</li>
+      <li>Consulta com o enfermeiro com documentos em mãos.</li>
+      <li>Assinatura do psicólogo.</li>
+      <li>Assinatura do assistente social.</li>
+      <li>O paciente deve trazer os resultados dos exames solicitados.</li>
+      <li>Mediante exames, mostrar para a médica responsável da equipe para avaliação.</li>
+      <li>Passar para Jéssica realizar a inserção em sistema.</li>
+      <li>Quando sair a consulta com cirurgião, o paciente deve comparecer à UBS e retirar o processo de Planejamento Familiar com o enfermeiro.</li>
+    </ul>
+    <p><strong>OBS:</strong> Casos de gestantes, não é necessário passar para inserção no sistema, basta entregar em mãos para que seja feita pelo enfermeiro.</p>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>Horário de Funcionamento: Segunda a Sexta-feira, das 7h às 17h</p>
+    <p>UBS Portal das Laranjeiras - Contato: (11) 4800-5024 | Endereço: Rua Cardeal, Portal das Laranjeiras</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Alterna o modo noturno/diurno
+    const toggleDarkBtn = document.getElementById('toggleDarkBtn');
+    toggleDarkBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleDarkBtn.textContent = document.body.classList.contains('dark') ? 'Modo Diurno' : 'Modo Noturno';
+    });
+
+    // Função para criar os botões de ACS para cada rua
+    function createACSButtons() {
+      const acsContainer = document.getElementById('acs-buttons');
+      const streets = [
+        "Avenida Vereador Luiz Gonzaga Dartora",
+        "Rua Andorinha",
+        "Rua Anu",
+        "Rua Beija Flor",
+        "Rua Bem Te-Vi",
+        "Rua Canário",
+        "Rua Canário da Terra",
+        "Rua Faizão",
+        "Rua Gaivota",
+        "Rua Garça",
+        "Rua Ibis Dourado",
+        "Rua João de Barro",
+        "Rua Melro",
+        "Rua Pardal",
+        "Rua Passáro Preto",
+        "Rua Patativa",
+        "Rua Paulo Candido da Silva",
+        "Rua Perdiz",
+        "Rua Periquito",
+        "Rua Pintassilgo",
+        "Rua Rouxinol",
+        "Rua Sabiá",
+        "Rua Siriema",
+        "Rua Tico-Tico",
+        "Rua Tizio",
+        "Rua Tucano",
+        "Rua Uirapuru",
+        "Rua Francisco Mommenshon",
+        "Rua Cardeal"
+      ];
+
+      // Mapeamento de exceções: cada objeto define um ACS e as ruas em que ele atua
+      const exceptionsMapping = [
+        { name: "Patrícia", photo: "patricia.png", streets: ["Ibis Dourado", "Perdiz", "Patativa"] },
+        { name: "Regina", photo: "regina.png", streets: ["Sanhaço", "Pintassilgo"] },
+        { name: "Solange", photo: "solange.png", streets: ["Pássaro Preto", "Tucano", "Luiz Gonzaga Dartora"] },
+        { name: "Fernanda", photo: "fernanda.png", streets: ["Andorinha"] },
+        { name: "Daniele", photo: "danieli.png", streets: ["Luiz Gonzaga Dartora", "Cardeal"] },
+        { name: "Tais", photo: "tais.png", streets: ["Pintassilgo"] },
+        { name: "Késia", photo: "kesia.png", streets: ["Pintassilgo"] },
+        { name: "Débora", photo: "debora.png", streets: ["Siriema"] },
+        { name: "Luana", photo: "luana.png", streets: ["João de Barro", "Andorinha", "Pardal", "Anu"] },
+        { name: "Susana", photo: "susana.png", streets: ["Melro", "Luiz Gonzaga Dartora"] },
+        { name: "Felix", photo: "felix.png", streets: ["Canário da Terra", "Periquito"] },
+        { name: "Vitor", photo: "vitor.png", streets: ["Sabiá Laranjeiras"] },
+        { name: "Maylon", photo: "maylon.png", streets: ["Tucano", "Faisão", "Melro", "Tizio"] },
+        { name: "Kelly", photo: "kelly.png", streets: ["João de Barro", "Ibis Dourado", "Tizio", "Gaivota"] },
+        { name: "Nadieli", photo: "nadieli.png", streets: ["Sanhaço", "Beija Flor", "Canário"] },
+        { name: "Marina", photo: "marina.png", streets: ["Rua Francisco Mommenshon"] },
+        { name: "Bruna", photo: "bruna.png", streets: ["Rua Cardeal"] }
+      ];
+      
+
+      streets.forEach((street) => {
+        const button = document.createElement('button');
+        button.className = 'street-button';
+        let agents = [];
+        // Exceção para "Rua Francisco Mommenshon": somente a Marina
+        if (street === "Rua Francisco Mommenshon") {
+          agents.push({
+            name: "ACS Marina",
+            photo: "marina.png",
+            info: "Agente de Saúde"
+          });
+         
+        }
+        // Exceção para "Rua Cardeal": três ACS: Patrícia, Bruna e Daniele
+        else if (street === "Rua Cardeal") {
+          agents.push({
+            name: "ACS Patricia",
+            photo: "patricia.png",
+            info: "Agente de Saúde"
+          });
+          agents.push({
+            name: "ACS Bruna",
+            photo: "bruna.png",
+            info: "Agente de Saúde"
+          });
+          agents.push({
+            name: "ACS Daniele",
+            photo: "danieli.png",
+            info: "Agente de Saúde"
+          });
+        }
+        // Para as demais ruas, cria 2 ACS de forma dinâmica
+        else {
+          const normalizedStreet = street.toLowerCase().replace(/\s/g, "_").replace(/[^\w]/g, "");
+          agents.push({
+            name: `ACS ${street} 1`,
+            photo: `${normalizedStreet}_1.png`,
+            info: "Agente de Saúde"
+          });
+          agents.push({
+            name: `ACS ${street} 2`,
+            photo: `${normalizedStreet}_2.png`,
+            info: "Agente de Saúde"
+          });
+        }
+        
+        button.setAttribute('data-agents', JSON.stringify(agents));
+        button.textContent = street;
+        acsContainer.appendChild(button);
+      });
+    }
+
+    // Exibe informações dos agentes quando um botão de rua é clicado
+    function setupAgentClickHandlers() {
+      const streetButtons = document.querySelectorAll('.street-button');
+      const agentGroupDiv = document.getElementById('agentGroup');
+      const agentInfoDiv = document.getElementById('agentInfo');
+
+      streetButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const agentsData = JSON.parse(button.getAttribute('data-agents'));
+          agentGroupDiv.innerHTML = '';
+          agentsData.forEach(agent => {
+            const agentCard = document.createElement('div');
+            agentCard.className = 'agent-card';
+            agentCard.style.margin = '10px';
+            agentCard.style.display = 'inline-block';
+
+            const agentPhoto = document.createElement('img');
+            agentPhoto.src = agent.photo || 'placeholder.png';
+            agentPhoto.alt = `Foto de ${agent.name}`;
+            agentPhoto.style.width = '100px';
+            agentPhoto.style.height = '100px';
+            agentPhoto.style.borderRadius = '50%';
+            agentCard.appendChild(agentPhoto);
+
+            const agentName = document.createElement('p');
+            agentName.textContent = agent.name;
+            agentCard.appendChild(agentName);
+
+            const agentInfo = document.createElement('p');
+            agentInfo.textContent = agent.info;
+            agentCard.appendChild(agentInfo);
+
+            agentGroupDiv.appendChild(agentCard);
+          });
+          agentInfoDiv.style.display = 'block';
+        });
+      });
+    }
+
+    // Alterna a visibilidade da seção "Salva Vidas"
+    function setupSalvaVidasButton() {
+      const salvaVidasBtn = document.getElementById('salvaVidasBtn');
+      const salvaVidasInfo = document.getElementById('salvaVidasInfo');
+      salvaVidasBtn.addEventListener('click', () => {
+        salvaVidasInfo.style.display = (salvaVidasInfo.style.display === 'none' || salvaVidasInfo.style.display === '')
+          ? 'block'
+          : 'none';
+      });
+    }
+
+    // Cria uma lista de cartões com os ACS e as ruas onde atuam (mapeamento manual)
+    function createACSMappingList() {
+      const acsMapping = [
+        { name: "Patrícia", photo: "patricia.png", streets: ["Ibis Dourado", "Perdiz", "Patativa", "Rua Cardeal"] },
+        { name: "Regina", photo: "regina.png", streets: ["Sanhaço", "Pintassilgo"] },
+        { name: "Solange", photo: "solange.png", streets: ["Pássaro Preto", "Tucano", "Luiz Gonzaga Dartora"] },
+        { name: "Fernanda", photo: "fernanda.png", streets: ["Andorinha", "Codorna"] },
+        { name: "Daniele", photo: "danieli.png", streets: ["Luiz Gonzaga Dartora", "Cardeal", "Patativa", "Flamingo"] },
+        { name: "Tais", photo: "tais.png", streets: ["Pintassilgo"] },
+        { name: "Késia", photo: "kesia.png", streets: ["Pintassilgo"] },
+        { name: "Débora", photo: "debora.png", streets: ["Siriema"] },
+        { name: "Luana", photo: "luana.png", streets: ["João de Barro", "Andorinha", "Pardal", "Anu"] },
+        { name: "Susana", photo: "susana.png", streets: ["Melro", "Luiz Gonzaga Dartora"] },
+        { name: "Felix", photo: "felix.png", streets: ["Canário da Terra", "Periquito"] },
+        { name: "Vitor", photo: "vitor.png", streets: ["Sabiá Laranjeiras"] },
+        { name: "Maylon", photo: "maylon.png", streets: ["Tucano", "Faisão", "Melro", "Tizio"] },
+        { name: "Kelly", photo: "kelly.png", streets: ["João de Barro", "Ibis Dourado", "Tizio", "Gaivota"] },
+        { name: "Nadieli", photo: "nadieli.png", streets: ["Sanhaço", "Beija Flor", "Canário"] },
+        { name: "Marina", photo: "marina.png", streets: ["Rua Francisco Mommenshon"] },
+        { name: "Bruna", photo: "bruna.png", streets: ["Rua Cardeal"] }
+      ];
+      
+      const acsListContainer = document.getElementById('acs-list');
+      acsMapping.forEach(acs => {
+        const card = document.createElement('div');
+        card.className = 'acs-card';
+        
+        const img = document.createElement('img');
+        img.src = acs.photo || 'placeholder.png';
+        img.alt = `Foto de ${acs.name}`;
+        card.appendChild(img);
+        
+        const details = document.createElement('div');
+        details.className = 'acs-details';
+        details.innerHTML = `<strong>${acs.name}</strong><span>Ruas: ${acs.streets.join(", ")}</span>`;
+        card.appendChild(details);
+        
+        acsListContainer.appendChild(card);
+      });
+    }
+
+    // Inicializa os manipuladores após o carregamento do DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      createACSButtons();
+      setupAgentClickHandlers();
+      setupSalvaVidasButton();
+      createACSMappingList();
+    });
+  </script>
+</body>
+</html>
