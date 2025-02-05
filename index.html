@@ -142,7 +142,7 @@
       transform: scale(1.05);
       border: 2px solid #003366;
     }
-    /* Informações dos Agentes (exibidos ao clicar em uma rua) */
+    /* Informações dos Agentes (ao clicar em uma rua) */
     .agent-info {
       margin-top: 20px;
       padding: 10px;
@@ -240,33 +240,47 @@
       color: #721c24;
       text-align: center;
     }
-    /* Seção Equipes de Saúde da Família */
+    /* Seção Equipes de Saúde da Família - Estilos Melhorados */
     .esf-teams {
-      max-width: 800px;
-      margin: 20px auto;
+      text-align: center;
       padding: 20px;
       background-color: #e9f7ef;
       border-radius: 8px;
-      transition: background-color 0.3s ease;
+      margin: 20px auto;
     }
-    .esf-teams h2 {
-      text-align: center;
+    .teams-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .team-card {
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      transition: transform 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+    .team-card h3 {
+      margin-bottom: 15px;
       color: #2e7d32;
-      margin-bottom: 10px;
     }
-    .esf-team {
-      margin-bottom: 20px;
-    }
-    .esf-team h3 {
-      color: #1b5e20;
-      margin-bottom: 10px;
-    }
-    .esf-team ul {
+    .team-card ul {
       list-style: none;
-      padding-left: 20px;
+      padding: 0;
+      text-align: left;
     }
-    .esf-team ul li {
-      margin-bottom: 5px;
+    .team-card ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .team-card ul li:last-child {
+      border-bottom: none;
     }
     /* Seção Mapa do Google */
     .google-map {
@@ -464,38 +478,43 @@
     </div>
   </section>
 
-  <!-- Seção Equipes de Saúde da Família -->
+  <!-- Seção Equipes de Saúde da Família - Versão Melhorada -->
   <section class="esf-teams">
     <h2>Equipes de Saúde da Família</h2>
-    <div class="esf-team">
-      <h3>ESF 1</h3>
-      <ul>
-        <li>Middihan Nascimento (Enfermeira)</li>
-        <li>Enfermeira Márcia Cruz</li>
-        <li>ACS Luana</li>
-        <li>ACS Nadieli</li>
-        <li>ACS Sol</li>
-        <li>ACS Kelly</li>
-        <li>ACS Susana</li>
-        <li>ACS Fernanda</li>
-        <li>ACS Patrícia</li>
-        <li>ACS Débora</li>
-        <li>ACS Bruna</li>
-      </ul>
-    </div>
-    <div class="esf-team">
-      <h3>ESF 2</h3>
-      <ul>
-        <li>Enfermeira Thais</li>
-        <li>ACS Vanessa</li>
-        <li>ACS Vitor</li>
-        <li>ACS Maylon</li>
-        <li>ACS Marina</li>
-        <li>ACS Felix</li>
-        <li>ACS Regina</li>
-        <li>ACS Tais</li>
-        <li>ACS Kesia</li>
-      </ul>
+    <div class="teams-container">
+      <!-- Card da ESF 1 -->
+      <div class="team-card">
+        <h3>ESF 1</h3>
+        <ul>
+          <li><strong>Middihan Nascimento</strong> (Médica)</li>
+          <li><strong>Márcia Cruz</strong> (Enfermeira)</li>
+          <li>ACS Luana</li>
+          <li>ACS Nadieli</li>
+          <li>ACS Sol</li>
+          <li>ACS Kelly</li>
+          <li>ACS Susana</li>
+          <li>ACS Fernanda</li>
+          <li>ACS Patrícia</li>
+          <li>ACS Débora</li>
+          <li>ACS Bruna</li>
+        </ul>
+      </div>
+      <!-- Card da ESF 2 -->
+      <div class="team-card">
+        <h3>ESF 2</h3>
+        <ul>
+          <li><strong>Bianca Nicoleti</strong> (Médica)</li>
+          <li><strong>Thais</strong> (Enfermeira)</li>
+          <li>ACS Vanessa</li>
+          <li>ACS Vitor</li>
+          <li>ACS Maylon</li>
+          <li>ACS Marina</li>
+          <li>ACS Felix</li>
+          <li>ACS Regina</li>
+          <li>ACS Tais</li>
+          <li>ACS Késia</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -630,11 +649,10 @@
       toggleDarkBtn.textContent = document.body.classList.contains('dark') ? 'Modo Diurno' : 'Modo Noturno';
     });
 
-    // Função para criar os botões de ACS para cada rua
+    // Função para criar os botões de ACS para cada rua com regras específicas
     function createACSButtons() {
       const acsContainer = document.getElementById('acs-buttons');
       const streets = [
-        "Avenida Vereador Luiz Gonzaga Dartora",
         "Rua Andorinha",
         "Rua Anu",
         "Rua Beija Flor",
@@ -662,103 +680,61 @@
         "Rua Tucano",
         "Rua Uirapuru",
         "Rua Francisco Mommenshon",
-        "Rua Cardeal"
+        "Rua Cardeal",
+        "Erminia",
+        "Benedito Rodrigues",
+        "Luiz Gonzaga Dartora"
       ];
-
-      // Mapeamento de exceções: cada objeto define um ACS e as ruas em que ele atua
-      const exceptionsMapping = [
-        { name: "Patrícia", photo: "patricia.png", streets: ["Ibis Dourado", "Perdiz", "Patativa"] },
-        { name: "Regina", photo: "regina.png", streets: ["Sanhaço", "Pintassilgo"] },
-        { name: "Solange", photo: "solange.png", streets: ["Pássaro Preto", "Tucano", "Luiz Gonzaga Dartora"] },
-        { name: "Fernanda", photo: "fernanda.png", streets: ["Andorinha"] },
-        { name: "Daniele", photo: "danieli.png", streets: ["Luiz Gonzaga Dartora", "Cardeal"] },
-        { name: "Tais", photo: "tais.png", streets: ["Pintassilgo"] },
-        { name: "Késia", photo: "kesia.png", streets: ["Pintassilgo"] },
-        { name: "Débora", photo: "debora.png", streets: ["Siriema"] },
-        { name: "Luana", photo: "luana.png", streets: ["João de Barro", "Andorinha", "Pardal", "Anu"] },
-        { name: "Susana", photo: "susana.png", streets: ["Melro", "Luiz Gonzaga Dartora"] },
-        { name: "Felix", photo: "felix.png", streets: ["Canário da Terra", "Periquito"] },
-        { name: "Vitor", photo: "vitor.png", streets: ["Sabiá Laranjeiras"] },
-        { name: "Maylon", photo: "maylon.png", streets: ["Tucano", "Faisão", "Melro", "Tizio"] },
-        { name: "Kelly", photo: "kelly.png", streets: ["João de Barro", "Ibis Dourado", "Tizio", "Gaivota"] },
-        { name: "Nadieli", photo: "nadieli.png", streets: ["Sanhaço", "Beija Flor", "Canário"] },
-        { name: "Marina", photo: "marina.png", streets: ["Rua Francisco Mommenshon"] },
-        { name: "Bruna", photo: "bruna.png", streets: ["Rua Cardeal"] }
-      ];
-      
 
       streets.forEach((street) => {
         const button = document.createElement('button');
         button.className = 'street-button';
         let agents = [];
-        // Exceção para "Rua Francisco Mommenshon": somente a Marina
-        if (street === "Rua Francisco Mommenshon") {
-          agents.push({
-            name: "ACS Marina",
-            photo: "marina.png",
-            info: "Agente de Saúde"
-          });
-         
-        }
-        else if (street === "Rua Tucano") {
-    agents.push({
-      name: "Sol",
-      photo: "solange.png",
-      info: "Agente de Saúde"
-    });
-    agents.push({
-      name: "ACS Arara 2",
-      photo: "arara_2.png",
-      info: "Agente de Saúde"
-    });
-    agents.push({
-      name: "ACS Arara 3",
-      photo: "maylon.png",
-      info: "Agente de Saúde"
-    });
-    agents.push({
-      name: "ACS Arara 4",
-      photo: "arara_4.png",
-      info: "Agente de Saúde"
-    });
-    agents.push({
-      name: "ACS Arara 5",
-      photo: "arara_5.png",
-      info: "Agente de Saúde"
-    });
-  }
-        // Exceção para "Rua Cardeal": três ACS: Patrícia, Bruna e Daniele
-        else if (street === "Rua Cardeal") {
-          agents.push({
-            name: "ACS Patricia",
-            photo: "patricia.png",
-            info: "Agente de Saúde"
-          });
-          agents.push({
-            name: "ACS Bruna",
-            photo: "bruna.png",
-            info: "Agente de Saúde"
-          });
-          agents.push({
-            name: "ACS Daniele",
-            photo: "danieli.png",
-            info: "Agente de Saúde"
-          });
-          
-        }
-        // Para as demais ruas, cria 2 ACS de forma dinâmica
-        else {
+        
+        // Regras específicas para determinadas ruas
+        if (street === "Rua Cardeal") {
+          agents = [
+            { name: "ACS Daniele", photo: "danieli.png", info: "Agente de Saúde" },
+            { name: "ACS Patrícia", photo: "patricia.png", info: "Agente de Saúde" },
+            { name: "ACS Bruna", photo: "bruna.png", info: "Agente de Saúde" }
+          ];
+        } else if (street === "Rua Tucano") {
+          agents = [
+            { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
+            { name: "ACS Maylon", photo: "maylon.png", info: "Agente de Saúde" },
+            { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" }
+          ];
+        } else if (street === "Rua Pintassilgo") {
+          agents = [
+            { name: "ACS Késia", photo: "kesia.png", info: "Agente de Saúde" },
+            { name: "ACS Regina", photo: "regina.png", info: "Agente de Saúde" },
+            { name: "ACS Tais", photo: "tais.png", info: "Agente de Saúde" }
+          ];
+        } else if (street === "Luiz Gonzaga Dartora") {
+          agents = [
+            { name: "ACS Bruna", photo: "bruna.png", info: "Agente de Saúde" },
+            { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
+            { name: "ACS Daniele", photo: "danieli.png", info: "Agente de Saúde" },
+            { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" }
+          ];
+        }else if (street === "Rua Francisco Mommenshon") {
+          agents = [
+            { name: "ACS Marina", photo: "marina.png", info: "Agente de Saúde" },
+            
+          ];}else if (street === "Erminia") {
+          agents = [
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Agente de Saúde" },
+            
+          ];}else {
+          // Caso não haja regra específica, cria ACS de forma dinâmica (exemplo: 5 agentes)
           const normalizedStreet = street.toLowerCase().replace(/\s/g, "_").replace(/[^\w]/g, "");
-          agents.push({
-            name: `ACS ${street} 1`,
-            photo: `${normalizedStreet}_1.png`,
-            info: "Agente de Saúde"
-          });
-          agents.push({
-            name: `ACS ${street} 2`,
-            photo: `${normalizedStreet}_2.png`,
-            info: "Agente de Saúde"
-          });
+          for (let i = 1; i <= 5; i++) {
+            agents.push({
+              name: `ACS ${street} ${i}`,
+              photo: `${normalizedStreet}_${i}.png`,
+              info: "Agente de Saúde"
+            });
+          }
         }
         
         button.setAttribute('data-agents', JSON.stringify(agents));
@@ -819,6 +795,7 @@
 
     // Cria uma lista de cartões com os ACS e as ruas onde atuam (mapeamento manual)
     function createACSMappingList() {
+      // Aqui você pode manter ou ajustar o mapeamento para exibição geral dos ACS
       const acsMapping = [
         { name: "Patrícia", photo: "patricia.png", streets: ["Ibis Dourado", "Perdiz", "Patativa", "Rua Cardeal"] },
         { name: "Regina", photo: "regina.png", streets: ["Sanhaço", "Pintassilgo"] },
@@ -829,14 +806,15 @@
         { name: "Késia", photo: "kesia.png", streets: ["Pintassilgo"] },
         { name: "Débora", photo: "debora.png", streets: ["Siriema"] },
         { name: "Luana", photo: "luana.png", streets: ["João de Barro", "Andorinha", "Pardal", "Anu"] },
-        { name: "Susana", photo: "susana.png", streets: ["Melro", "Luiz Gonzaga Dartora"] },
+        { name: "Susana", photo: "susana.png", streets: ["Melro", "Luiz Gonzaga Dartora", "Tucano"] },
         { name: "Felix", photo: "felix.png", streets: ["Canário da Terra", "Periquito"] },
-        { name: "Vitor", photo: "vitor.png", streets: ["Sabiá Laranjeiras"] },
+        { name: "Vitor", photo: "vitor.png", streets: ["Sabiá Laranjeiras", "Arapongas"] },
         { name: "Maylon", photo: "maylon.png", streets: ["Tucano", "Faisão", "Melro", "Tizio"] },
         { name: "Kelly", photo: "kelly.png", streets: ["João de Barro", "Ibis Dourado", "Tizio", "Gaivota"] },
         { name: "Nadieli", photo: "nadieli.png", streets: ["Sanhaço", "Beija Flor", "Canário"] },
         { name: "Marina", photo: "marina.png", streets: ["Rua Francisco Mommenshon"] },
-        { name: "Bruna", photo: "bruna.png", streets: ["Rua Cardeal"] }
+        { name: "Bruna", photo: "bruna.png", streets: ["Rua Cardeal"] },
+        { name: "Vanessa", photo: "vanessa.png", streets: ["Erminia", "Benedito Rodrigues"] }
       ];
       
       const acsListContainer = document.getElementById('acs-list');
