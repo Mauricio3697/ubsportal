@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UBS Portal das Laranjeiras - Informações</title>
   <style>
-    /* Reset e configuração global */
+    /* =================================== */
+    /* Reset e configuração global         */
+    /* =================================== */
     * {
       margin: 0;
       padding: 0;
@@ -18,75 +20,19 @@
       line-height: 1.6;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-    /* Modo noturno */
+    /* =================================== */
+    /* Modo Noturno - Ajustes Gerais       */
+    /* =================================== */
     body.dark {
       background-color: #121212;
       color: #e0e0e0;
     }
-    /* Ajustes específicos para elementos no modo noturno */
-    body.dark header,
-    body.dark footer,
-    body.dark nav,
-    body.dark table th {
-      background-color: #1f1f1f;
+    body.dark a {
+      color: #9ecfff;
     }
-    body.dark nav a {
-      color: #e0e0e0;
-    }
-    body.dark .container {
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      border-radius: 8px;
-    }
-    /* Seção Salva Vidas no modo noturno */
-    body.dark .salva-vidas-info {
-      background-color: #2a2a2a;
-      border-color: #555;
-      color: #e0e0e0;
-    }
-    /* Seção Equipes de Saúde da Família no modo noturno */
-    body.dark .esf-teams {
-      background-color: #1f1f1f;
-      color: #e0e0e0;
-    }
-    body.dark .team-card {
-      background-color: #2a2a2a;
-      color: #e0e0e0;
-    }
-    /* Ajustes para a exibição dos ACS (agent cards) no modo noturno */
-    body.dark .agent-info {
-      background-color: #2a2a2a;
-      border: 1px solid #555;
-      color: #e0e0e0;
-    }
-    body.dark .agent-card {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-      border: 1px solid #444;
-    }
-    /* Ajustes para a seção de ACS na lista (mapeamento manual) no modo noturno */
-    body.dark .acs-list-container {
-      background-color: #1f1f1f; /* Fundo mais escuro */
-      color: #e0e0e0;
-    }
-    body.dark .acs-card {
-      background-color: #2a2a2a;
-      border: 1px solid #444;
-      color: #e0e0e0;
-    }
-    body.dark .acs-card .acs-details {
-      color: #e0e0e0;
-    }
-    body.dark .acs-card img {
-      border: 2px solid #444;
-    }
-    /* Estilos gerais para listas */
-    ul {
-      list-style: none;
-      margin-left: 0;
-      padding-left: 0;
-    }
-    /* Cabeçalho */
+    /* =================================== */
+    /* Cabeçalho e Navegação               */
+    /* =================================== */
     header {
       background-color: #003366;
       color: white;
@@ -97,24 +43,6 @@
       max-height: 80px;
       width: auto;
     }
-    /* Botão para alternar o modo noturno */
-    .toggle-dark-btn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1000;
-      transition: background-color 0.3s ease;
-    }
-    .toggle-dark-btn:hover {
-      background-color: #0056b3;
-    }
-    /* Menu de Navegação */
     nav {
       background-color: #00264d;
       padding: 10px;
@@ -131,17 +59,171 @@
     nav a:hover {
       text-decoration: underline;
     }
-    /* Container Principal */
+    /* =================================== */
+    /* Botão de Alternar Modo Noturno/Diurno */
+    /* =================================== */
+    .toggle-dark-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+    .toggle-dark-btn:hover {
+      background-color: #0056b3;
+    }
+    /* =================================== */
+    /* Containers e Seções Gerais          */
+    /* =================================== */
     .container {
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
       border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: background-color 0.3s ease;
     }
-    /* Botões de Rua (ACS) */
+    body.dark .container {
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    }
+    .container h2, .container h3 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    /* =================================== */
+    /* Tabelas                             */
+    /* =================================== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background-color: #003366;
+      color: white;
+    }
+    body.dark table th {
+      background-color: #1f1f1f;
+    }
+    /* =================================== */
+    /* Seção: Salva Vidas                  */
+    /* =================================== */
+    .salva-vidas-info {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+      background: linear-gradient(135deg, #ffdddd, #ffd6d6);
+      border: 2px solid #ff4d4d;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(255,77,77,0.4);
+      transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+      display: none;
+    }
+    .salva-vidas-info h3 {
+      color: #b30000;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .salva-vidas-info p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    .salva-vidas-info ul {
+      margin: 10px 20px;
+    }
+    .salva-vidas-info ul li {
+      margin: 5px 0;
+      font-size: 1em;
+    }
+    body.dark .salva-vidas-info {
+      background: linear-gradient(135deg, #2a2a2a, #333);
+      border-color: #ff6666;
+      box-shadow: 0 4px 8px rgba(255,102,102,0.5);
+    }
+    body.dark .salva-vidas-info h3 {
+      color: #ff9999;
+    }
+    /* =================================== */
+    /* Botões: Salva Vidas e Direitos/Deveres */
+    /* =================================== */
+    .salva-vidas-btn, .direitos-deveres-btn {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      margin: 20px auto;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 80%;
+      max-width: 200px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+    }
+    .salva-vidas-btn {
+      background-color: #ff4d4d;
+      color: white;
+    }
+    .salva-vidas-btn:hover {
+      background-color: #cc0000;
+    }
+    .direitos-deveres-btn {
+      background-color: #4dff4d;
+      color: white;
+    }
+    .direitos-deveres-btn:hover {
+      background-color: #00b300;
+    }
+    /* =================================== */
+    /* Seção: Direitos e Deveres            */
+    /* =================================== */
+    .direitos-deveres-info {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+      background: linear-gradient(135deg, #ddffdd, #d6ffd6);
+      border: 2px solid #4dff4d;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(77,255,77,0.4);
+      transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+      display: none;
+    }
+    .direitos-deveres-info h3 {
+      color: #00b300;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .direitos-deveres-info p,
+    .direitos-deveres-info ul {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    body.dark .direitos-deveres-info {
+      background: linear-gradient(135deg, #2a332a, #333933);
+      border-color: #66ff66;
+      box-shadow: 0 4px 8px rgba(102,255,102,0.5);
+    }
+    body.dark .direitos-deveres-info h3 {
+      color: #99ff99;
+    }
+    /* =================================== */
+    /* Seção: Mapa dos ACS - Botões de Rua   */
+    /* =================================== */
     .street-button {
       display: inline-block;
       background-color: #007bff;
@@ -161,7 +243,9 @@
       transform: scale(1.05);
       border: 2px solid #003366;
     }
-    /* Informações dos Agentes (ao clicar em uma rua) */
+    /* =================================== */
+    /* Seção: Informações dos ACS (ao clicar na rua) */
+    /* =================================== */
     .agent-info {
       margin-top: 20px;
       padding: 10px;
@@ -172,100 +256,50 @@
       text-align: center;
       transition: background-color 0.3s ease;
     }
-    .agent-info img {
-      max-width: 100px;
-      border-radius: 50%;
-      margin: 10px auto;
-      display: block;
-    }
-    /* Tabelas */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
-    table th, table td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    table th {
-      background-color: #003366;
-      color: white;
-    }
-    /* Rodapé */
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      width: 100%;
-      margin-top: 20px;
-    }
-    /* Fluxo de Planejamento Familiar */
-    .family-planning-flow {
-      background-color: #e6f3ff;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px auto;
-    }
-    .family-planning-flow h3 {
-      color: #003366;
-    }
-    /* Dias de Coleta */
-    .collection-days {
-      background-color: #fff3cd;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px auto;
-    }
-    .collection-days h3 {
-      color: #856404;
-    }
-    /* Botão Salva Vidas */
-    .salva-vidas-btn {
-      display: block;
-      background-color: #ff4d4d;
-      color: white;
+    .agent-card {
+      background-color: #fff;
+      margin: 10px;
       padding: 10px;
-      text-align: center;
-      margin: 20px auto;
       border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 80%;
-      max-width: 200px;
-      font-size: 14px;
-      font-weight: bold;
-      border: none;
-    }
-    .salva-vidas-btn:hover {
-      background-color: #cc0000;
-    }
-    /* Seção Salva Vidas */
-    .salva-vidas-info {
-      display: none;
-      margin: 20px auto;
-      padding: 10px;
-      background-color: #f8d7da;
-      border: 1px solid #f5c6cb;
-      border-radius: 20px;
-      text-align: left;
-      width: 80%;
-      max-width: 600px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .salva-vidas-info h3 {
-      color: #721c24;
       text-align: center;
+      transition: background-color 0.3s ease, border 0.3s ease;
+      display: inline-block;
     }
-    /* Seção Equipes de Saúde da Família - Estilos Melhorados */
+    body.dark .agent-info {
+      background-color: #1e1e1e;
+      border: 1px solid #555;
+    }
+    body.dark .agent-card {
+      background-color: #2a2a2a;
+      border: 1px solid #666;
+      color: #e0e0e0;
+    }
+    .agent-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 10px;
+      border: 2px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    body.dark .agent-card img {
+      border: 2px solid #888;
+      box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+    }
+    /* =================================== */
+    /* Seção: Equipes de Saúde da Família   */
+    /* =================================== */
     .esf-teams {
       text-align: center;
       padding: 20px;
       background-color: #e9f7ef;
       border-radius: 8px;
       margin: 20px auto;
+    }
+    body.dark .esf-teams {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
     }
     .teams-container {
       display: flex;
@@ -276,7 +310,7 @@
     }
     .team-card {
       background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border-radius: 8px;
       padding: 20px;
       width: 300px;
@@ -301,23 +335,24 @@
     .team-card ul li:last-child {
       border-bottom: none;
     }
-    /* Seção Mapa do Google */
-    .google-map {
-      max-width: 800px;
-      margin: 20px auto;
+    body.dark .team-card {
+      background-color: #2a2a2a;
+      border: 1px solid #555;
+      color: #e0e0e0;
     }
-    .google-map iframe {
-      width: 100%;
-      height: 480px;
-      border: 0;
+    body.dark .team-card h3 {
+      color: #99ff99;
     }
-    /* Seção Organização dos ACS e suas Ruas (Cartões com rosto dos ACS) */
+    /* =================================== */
+    /* Seção: Organização dos ACS e suas Ruas  */
+    /* =================================== */
     .acs-list-container {
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
       background-color: #e3f2fd;
       border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
     .acs-list-container h2 {
       text-align: center;
@@ -345,10 +380,42 @@
       font-size: 1.1em;
       margin-bottom: 5px;
     }
-    /* Responsividade para imagens */
+    body.dark .acs-list-container {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    body.dark .acs-card {
+      background-color: #2a2a2a;
+      border: 1px solid #555;
+    }
+    /* =================================== */
+    /* Seção: Mapa Interativo dos ACS         */
+    /* =================================== */
+    .google-map {
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .google-map iframe {
+      display: block;
+      width: 100%;
+      height: 480px;
+      border: 0;
+    }
+    /* =================================== */
+    /* Outros Elementos                   */
+    /* =================================== */
     img {
       max-width: 100%;
       height: auto;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -436,6 +503,22 @@
     </ul>
   </div>
 
+  <!-- Botão Direitos e Deveres e Seção de Informações -->
+  <button class="direitos-deveres-btn" id="direitosDeveresBtn">Direitos e Deveres</button>
+  <div class="direitos-deveres-info" id="direitosDeveresInfo">
+    <h3>Direitos e Deveres dos ACS e Funcionários Públicos</h3>
+    <p>A seguir, apresentamos os direitos e deveres que regem a atuação dos ACS e funcionários públicos, garantindo a qualidade do atendimento aos pacientes:</p>
+    <ul>
+      <li><strong>Direito à Capacitação:</strong> Os profissionais têm direito a treinamentos e atualizações constantes, conforme os dispositivos legais (ex.: Art. XX).</li>
+      <li><strong>Dever de Zelo:</strong> É obrigação dos agentes oferecer atendimento de excelência e com respeito aos direitos dos cidadãos.</li>
+      <li><strong>Direito à Remuneração Justa:</strong> Garantia de uma remuneração compatível com a responsabilidade e carga horária.</li>
+      <li><strong>Dever de Sigilo:</strong> Manter a confidencialidade das informações dos pacientes, em conformidade com as normas éticas.</li>
+      <li><strong>Direito à Segurança:</strong> Assegura-se ambientes de trabalho seguros e adequados para a prática profissional.</li>
+      <li><strong>Dever de Atendimento:</strong> Prestação de serviços de saúde de forma humanizada e seguindo os protocolos estabelecidos.</li>
+    </ul>
+    <p>Estas orientações têm respaldo em diversos dispositivos legais e normativos, visando proteger tanto os profissionais quanto os pacientes.</p>
+  </div>
+
   <!-- Atendimentos Médicos e Especialistas -->
   <section id="atendimentos" class="container">
     <h2>Atendimentos Médicos e Especialistas</h2>
@@ -497,7 +580,7 @@
     </div>
   </section>
 
-  <!-- Seção Equipes de Saúde da Família - Versão Melhorada -->
+  <!-- Seção: Equipes de Saúde da Família -->
   <section class="esf-teams">
     <h2>Equipes de Saúde da Família</h2>
     <div class="teams-container">
@@ -537,13 +620,15 @@
     </div>
   </section>
 
-  <!-- Seção Mapa Interativo dos ACS (Google My Maps) -->
+  <!-- Seção Mapa Interativo dos ACS -->
   <section class="google-map">
     <h2 style="text-align: center; margin-bottom: 10px;">Mapa Interativo dos ACS</h2>
-    <iframe src="https://www.google.com/maps/d/embed?mid=1TDeBCfmphzIY84dMG7EREvpagVIvzRg" allowfullscreen></iframe>
+    <div style="margin: 0 auto; max-width: 800px;">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1TDeBCfmphzIY84dMG7EREvpagVIvzRg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </section>
 
-  <!-- Seção Organização dos ACS e suas Ruas (Cartões com rosto dos ACS) -->
+  <!-- Seção: Organização dos ACS e suas Ruas -->
   <section id="acs-list-container" class="acs-list-container">
     <h2>Organização dos ACS e suas Ruas</h2>
     <div id="acs-list"></div>
@@ -659,7 +744,9 @@
     <p>UBS Portal das Laranjeiras - Contato: (11) 4800-5024 | Endereço: Rua Cardeal, Portal das Laranjeiras</p>
   </footer>
 
+  <!-- =================================== -->
   <!-- JavaScript -->
+  <!-- =================================== -->
   <script>
     // Alterna o modo noturno/diurno e atualiza o texto do botão
     const toggleDarkBtn = document.getElementById('toggleDarkBtn');
@@ -712,28 +799,24 @@
         
         // Regras específicas para determinadas ruas
         if (street === "Rua Cardeal") {
-          // Ao clicar em "Rua Cardeal": exibir Daniele, Patrícia e Bruna
           agents = [
             { name: "ACS Daniele", photo: "danieli.png", info: "Agente de Saúde" },
             { name: "ACS Patrícia", photo: "patricia.png", info: "Agente de Saúde" },
             { name: "ACS Bruna", photo: "bruna.png", info: "Agente de Saúde" }
           ];
         } else if (street === "Rua Tucano") {
-          // Ao clicar em "Rua Tucano": exibir Solange, Maylon e Susana
           agents = [
             { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
             { name: "ACS Maylon", photo: "maylon.png", info: "Agente de Saúde" },
             { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" }
           ];
         } else if (street === "Rua Pintassilgo") {
-          // Ao clicar em "Rua Pintassilgo": exibir Késia, Regina e Tais
           agents = [
             { name: "ACS Késia", photo: "kesia.png", info: "Agente de Saúde" },
             { name: "ACS Regina", photo: "regina.png", info: "Agente de Saúde" },
             { name: "ACS Tais", photo: "tais.png", info: "Agente de Saúde" }
           ];
         } else if (street === "Luiz Gonzaga Dartora") {
-          // Ao clicar em "Luiz Gonzaga Dartora": exibir Bruna, Solange, Daniele e Susana
           agents = [
             { name: "ACS Bruna", photo: "bruna.png", info: "Agente de Saúde" },
             { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
@@ -749,7 +832,7 @@
             { name: "ACS Vanessa", photo: "vanessa.png", info: "Agente de Saúde" }
           ];
         } else {
-          // Caso não haja regra específica, cria ACS de forma dinâmica (exemplo: 5 agentes)
+          // Geração dinâmica para demais ruas
           const normalizedStreet = street.toLowerCase().replace(/\s/g, "_").replace(/[^\w]/g, "");
           for (let i = 1; i <= 5; i++) {
             agents.push({
@@ -779,18 +862,10 @@
           agentsData.forEach(agent => {
             const agentCard = document.createElement('div');
             agentCard.className = 'agent-card';
-            agentCard.style.margin = '10px';
-            agentCard.style.display = 'inline-block';
-            agentCard.style.padding = '10px';
-            agentCard.style.borderRadius = '5px';
-            agentCard.style.textAlign = 'center';
 
             const agentPhoto = document.createElement('img');
             agentPhoto.src = agent.photo || 'placeholder.png';
             agentPhoto.alt = `Foto de ${agent.name}`;
-            agentPhoto.style.width = '100px';
-            agentPhoto.style.height = '100px';
-            agentPhoto.style.borderRadius = '50%';
             agentCard.appendChild(agentPhoto);
 
             const agentName = document.createElement('p');
@@ -819,7 +894,18 @@
       });
     }
 
-    // Cria uma lista de cartões com os ACS e as ruas onde atuam (mapeamento manual)
+    // Alterna a visibilidade da seção "Direitos e Deveres"
+    function setupDireitosDeveresButton() {
+      const direitosBtn = document.getElementById('direitosDeveresBtn');
+      const direitosInfo = document.getElementById('direitosDeveresInfo');
+      direitosBtn.addEventListener('click', () => {
+        direitosInfo.style.display = (direitosInfo.style.display === 'none' || direitosInfo.style.display === '')
+          ? 'block'
+          : 'none';
+      });
+    }
+
+    // Cria uma lista de cartões com os ACS (mapeamento manual)
     function createACSMappingList() {
       const acsMapping = [
         { name: "Patrícia", photo: "patricia.png", streets: ["Ibis Dourado", "Perdiz", "Patativa", "Rua Cardeal"] },
@@ -866,6 +952,7 @@
       createACSButtons();
       setupAgentClickHandlers();
       setupSalvaVidasButton();
+      setupDireitosDeveresButton();
       createACSMappingList();
     });
   </script>
