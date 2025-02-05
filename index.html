@@ -391,17 +391,58 @@
     /* =================================== */
     /* Seção: Mapa Interativo dos ACS         */
     /* =================================== */
-    .google-map {
-      max-width: 800px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    .google-map iframe {
-      display: block;
-      width: 100%;
-      height: 480px;
-      border: 0;
-    }
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.maps-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+iframe {
+    width: 100%;
+    max-width: 450px;
+    height: 350px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+.insumos {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.instagram {
+    margin-top: 20px;
+}
+.instagram a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+.instagram img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
     /* =================================== */
     /* Outros Elementos                   */
     /* =================================== */
@@ -420,6 +461,13 @@
   </style>
 </head>
 <body>
+  <div class="instagram">
+    <a href="https://www.instagram.com/ubsportaldaslaranjeiras/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+        Siga-nos no Instagram
+    </a>
+</div>
+
   <!-- Botão para alternar modo noturno/diurno -->
   <button class="toggle-dark-btn" id="toggleDarkBtn">Modo Noturno</button>
 
@@ -620,19 +668,27 @@
     </div>
   </section>
 
-  <!-- Seção Mapa Interativo dos ACS -->
-  <section class="google-map">
-    <h2 style="text-align: center; margin-bottom: 10px;">Mapa Interativo dos ACS</h2>
-    <div style="margin: 0 auto; max-width: 800px;">
-      <iframe src="https://www.google.com/maps/d/embed?mid=1TDeBCfmphzIY84dMG7EREvpagVIvzRg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </section>
+  <h2>📍 Localização</h2>
+<div class="maps-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14651.990560829463!2d-46.757523!3d-23.35210005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1738645512762!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+
+    <iframe src="https://www.google.com/maps/d/embed?mid=1TDeBCfmphzIY84dMG7EREvpagVIvzRg" allowfullscreen="" loading="lazy"></iframe>
+</div>
 
   <!-- Seção: Organização dos ACS e suas Ruas -->
   <section id="acs-list-container" class="acs-list-container">
     <h2>Organização dos ACS e suas Ruas</h2>
     <div id="acs-list"></div>
   </section>
+  
+<!-- Seção: Retirada de Insumos -->
+<section class="container" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0px 4px 8px rgba(0,0,0,0.1); margin-top: 20px;">
+  <h2 style="color: #007bff; font-weight: bold;">📦 Retirada de Insumos</h2>
+  <p style="font-size: 18px; color: #333;">Oferecemos atendimento para retirada de insumos de <strong>diabetes, fraldas e materiais.</strong></p>
+  <p style="font-size: 16px; color: #555; margin-top: 10px;"><strong>🕒 Horário:</strong> Segunda a Quinta, das <strong>9h às 15h</strong>.</p>
+</section>
+
+
 
   <!-- Cronograma da Enfermeira Thais -->
   <section class="container">
