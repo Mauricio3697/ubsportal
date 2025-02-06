@@ -819,35 +819,37 @@ iframe {
     function createACSButtons() {
       const acsContainer = document.getElementById('acs-buttons');
       const streets = [
-        "Rua Andorinha",
-        "Rua Anu",
-        "Rua Beija Flor",
-        "Rua Bem Te-Vi",
-        "Rua Canário",
-        "Rua Canário da Terra",
-        "Rua Faizão",
-        "Rua Gaivota",
-        "Rua Garça",
+        "Andorinha",
+        "Arapongas",
+        "Anu",
+        "Beija Flor",
+        "Bem-Te-Vi",
+        "Canário",
+        "Canário da Terra",
+        "Faisão",
+        "Gaivota",
+        "Garça",
         "Rua Ibis Dourado",
-        "Rua João de Barro",
+        "João de Barro",
         "Rua Melro",
         "Rua Pardal",
-        "Rua Passáro Preto",
+        "Passáro Preto",
         "Rua Patativa",
-        "Rua Paulo Candido da Silva",
+        "Orlando Peccicaco",
         "Rua Perdiz",
         "Rua Periquito",
         "Rua Pintassilgo",
-        "Rua Rouxinol",
-        "Rua Sabiá",
-        "Rua Siriema",
+        "Rouxinol",
+        "Sabiá laranjeiras",
+        "Siriema",
+        "Sanhaco",
         "Rua Tico-Tico",
         "Rua Tizio",
         "Rua Tucano",
         "Rua Uirapuru",
-        "Rua Francisco Mommenshon",
-        "Rua Cardeal",
-        "Erminia",
+        "Francisco Mommenshon",
+        " Cardeal",
+        "Erminia Amalia",
         "Benedito Rodrigues",
         "Luiz Gonzaga Dartora"
       ];
@@ -858,7 +860,7 @@ iframe {
         let agents = [];
         
         // Regras específicas para determinadas ruas
-        if (street === "Rua Cardeal") {
+        if (street === " Cardeal") {
           agents = [
             { name: "ACS Daniele", photo: "danieli.png", info: "Agente de Saúde" },
             { name: "ACS Patrícia", photo: "patricia.png", info: "Agente de Saúde" },
@@ -866,7 +868,7 @@ iframe {
           ];
         } else if (street === "Rua Tucano") {
           agents = [
-            { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
+            { name: "ACS Solange", photo: "solange.png", info: "236 em diante" },
             { name: "ACS Maylon", photo: "maylon.png", info: "Agente de Saúde" },
             { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" }
           ];
@@ -879,19 +881,118 @@ iframe {
         } else if (street === "Luiz Gonzaga Dartora") {
           agents = [
             { name: "ACS Bruna", photo: "bruna.png", info: "Agente de Saúde" },
-            { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
+            { name: "ACS Solange", photo: "solange.png", info: "971 ate 1390" },
             { name: "ACS Daniele", photo: "danieli.png", info: "Agente de Saúde" },
-            { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" }
+            { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" },
+            { name: "ACS Tais", photo: "tais.png", info: "Agente de Saúde" }
           ];
-        } else if (street === "Rua Francisco Mommenshon") {
+        } else if (street === "Francisco Mommenshon") {
           agents = [
-            { name: "ACS Marina", photo: "marina.png", info: "Agente de Saúde" }
+            { name: "ACS Marina", photo: "marina.png", info: "N-224" }
           ];
-        } else if (street === "Erminia") {
+        } else if (street === "Erminia Amalia") {
           agents = [
-            { name: "ACS Vanessa", photo: "vanessa.png", info: "Agente de Saúde" }
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Casas(par)" }
           ];
-        } else {
+        }else if (street === "Benedito Rodrigues") {
+          agents = [
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Casas(par)" }
+          ];
+        }
+        else if (street === "Orlando Peccicaco") {
+          agents = [
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Casas(par)" }
+          ];
+        } else if (street === "Arapongas") {
+          agents = [
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Casas(impar)" },
+            { name: "ACS Vitor", photo: "vitor.png", info: "Casas(par)" }
+          ];
+        }else if (street === "Arapongas") {
+          agents = [
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Casas(impar)" },
+            { name: "ACS Vitor", photo: "vitor.png", info: "Casas(par)" }
+          ];
+        } else if (street === "Sabiá laranjeiras") {
+          agents = [
+            { name: "ACS Felix", photo: "felix.png", info: "Casas(par)" },
+            { name: "ACS Vitor", photo: "vitor.png", info: "Casas(impar)" }
+          ];
+        }else if (street === "Canário") {
+          agents = [
+            { name: "ACS Vanessa", photo: "vanessa.png", info: "Casas(par 474 ate 772)" },
+            { name: "ACS Nadieli", photo: "nadieli.png", info: "Casas(par)" }
+          ];
+        }else if (street === "Garça") {
+          agents = [
+            { name: "Luana", photo: "luana.png", info: "(Casas par e impar)" },
+            
+          ];
+        }else if (street === "Andorinha") {
+          agents = [
+            { name: "Luana", photo: "luana.png", info: "Casas (impar- 225 ate 555)" },
+            { name: "Fernanda", photo: "fernanda.png", info: "Casas (par)" },
+            { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" },
+            
+          ];
+        }else if (street === "Faisão") {
+          agents = [
+            { name: "ACS Solange", photo: "solange.png", info: "Agente de Saúde" },
+            { name: "ACS Maylon", photo: "maylon.png", info: "Agente de Saúde" },
+            
+          ];
+        } else if (street === "Passáro Preto") {
+          agents = [
+            { name: "ACS Solange", photo: "solange.png", info: "Casas(35 ate 90)" },
+            
+            
+          ];
+        }else if (street === "Anu") {
+          agents = [
+            { name: "Luana", photo: "luana.png", info: "Agente de Saúde" },
+            
+          ];
+        }else if (street === "João de Barro") {
+          agents = [
+            { name: "Luana", photo: "luana.png", info: "Casas (par) 236 ate 426" },
+            { name: "ACS Susana", photo: "susana.png", info: "Agente de Saúde" },
+            
+          ];
+        }else if (street === "Siriema") {
+          agents = [
+            { name: "Debora", photo: "debora.png", info: "Agente de Saúde" },
+            
+          ];
+        }else if (street === "Bem-Te-Vi") {
+          agents = [
+          { name: "ACS Nadieli", photo: "nadieli.png", info: "Casas(par)" },
+          { name: "ACS Felix", photo: "felix.png", info: "Casas(par)" },
+            
+          ];
+        }else if (street === "Sanhaco") {
+          agents = [
+          { name: "ACS Nadieli", photo: "nadieli.png", info: "Casas(par)" },
+            
+          ];
+        }else if (street === "Beija Flor") {
+          agents = [
+          { name: "ACS Nadieli", photo: "nadieli.png", info: "Agente de Saúde" },
+            
+          ];
+        }else if (street === "Rouxinol") {
+          agents = [
+          { name: "ACS Regina", photo: "regina.png", info: "Agente de Saúde" },
+            
+          ];
+        }else if (street === "Canário da Terra") {
+          agents = [
+          { name: "ACS Felix", photo: "felix.png", info: "Agente de Saúde" },
+            
+          ];
+        }
+
+        // limite para inserir agentes
+         else {
           // Geração dinâmica para demais ruas
           const normalizedStreet = street.toLowerCase().replace(/\s/g, "_").replace(/[^\w]/g, "");
           for (let i = 1; i <= 5; i++) {
