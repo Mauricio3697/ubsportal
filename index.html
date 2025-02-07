@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <link rel="icon" href="logo.jpg" type="image/png">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
   <title>UBS Portal das Laranjeiras - Informações</title>
   <style>
     /* =================================== */
@@ -182,11 +186,11 @@
       background-color: #cc0000;
     }
     .direitos-deveres-btn {
-      background-color: #4dff4d;
+      background-color: #4d4dff;
       color: white;
     }
     .direitos-deveres-btn:hover {
-      background-color: #00b300;
+      background-color: #002db3;
     }
     /* =================================== */
     /* Seção: Direitos e Deveres            */
@@ -196,14 +200,14 @@
       padding: 20px;
       max-width: 600px;
       background: linear-gradient(135deg, #ddffdd, #d6ffd6);
-      border: 2px solid #4dff4d;
+      border: 2px solid #534dff;
       border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(77,255,77,0.4);
+      box-shadow: 0 4px 8px rgba(80, 77, 255, 0.4);
       transition: background 0.3s, border 0.3s, box-shadow 0.3s;
       display: none;
     }
     .direitos-deveres-info h3 {
-      color: #00b300;
+      color: #0012b3;
       text-align: center;
       margin-bottom: 15px;
       font-size: 1.5em;
@@ -215,11 +219,11 @@
     }
     body.dark .direitos-deveres-info {
       background: linear-gradient(135deg, #2a332a, #333933);
-      border-color: #66ff66;
-      box-shadow: 0 4px 8px rgba(102,255,102,0.5);
+      border-color: #668cff;
+      box-shadow: 0 4px 8px rgba(112, 102, 255, 0.5);
     }
     body.dark .direitos-deveres-info h3 {
-      color: #99ff99;
+      color: #7496d1;
     }
     /* =================================== */
     /* Seção: Mapa dos ACS - Botões de Rua   */
@@ -321,7 +325,7 @@
     }
     .team-card h3 {
       margin-bottom: 15px;
-      color: #2e7d32;
+      color: #2e477d;
     }
     .team-card ul {
       list-style: none;
@@ -459,8 +463,37 @@ iframe {
       margin-top: 20px;
     }
   </style>
+  <style>
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #003366;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      font-weight: bold;
+      z-index: 1000;
+      animation: fadeOut 5s forwards;
+    }
+  
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+  </style>
+  
 </head>
 <body>
+  <div class="splash-screen">
+    <img src="fevereiro.jpeg" alt="UBS Portal" style="max-width: 350px;">
+  </div>
+  
+
   <div class="instagram">
     <a href="https://www.instagram.com/ubsportaldaslaranjeiras/" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
@@ -550,11 +583,72 @@ iframe {
       <li><strong>Guarda Municipal:</strong> 153</li>
     </ul>
   </div>
+  <!-- Botão para abrir o modal -->
+<button onclick="openModal()">Contatos Úteis</button>
+
+<!-- Modal com a lista de contatos -->
+<div class="modal" id="contactModal">
+    <div class="modal-header">
+        <span class="modal-title">Contatos Úteis</span>
+        <button class="close-button" onclick="closeModal()">&times;</button>
+    </div>
+    <ul class="contact-list">
+        <li class="contact-item"><strong>Casa da Mulher:</strong> 4445-2729 | Al. das Mangueiras, 47 - Laranjeiras</li>
+        <li class="contact-item"><strong>CEME:</strong> 4442-7362 | R. Flávio Augusto de Moraes, 80 - Centro</li>
+        <li class="contact-item"><strong>PS Laranjeiras:</strong> 4899-3367 | Al. das Mangueiras, 47 - Laranjeiras</li>
+        <li class="contact-item"><strong>PS Caieiras:</strong> 4934-5132 | Av. Dr. Olindo Dartora, 448</li>
+        <li class="contact-item"><strong>CTA Caieiras:</strong> 4442-4749 | Av. Pres. Kennedy, 111 - Centro</li>
+        <li class="contact-item"><strong>CAPS Caieiras:</strong> 4605-2641 | R. Padre Aquiles Silvestre, 274 - Centro</li>
+        <li class="contact-item"><strong>CRAS Caieiras:</strong> 4605-5116 | R. Padre Aquiles Silvestre, 76 - Centro</li>
+        <li class="contact-item"><strong>CREAS Caieiras:</strong> 4442-4046 | R. Padre Aquiles Silvestre, 69 - Centro</li>
+        <li class="contact-item"><strong>CIAS:</strong> 4442-4200 | R. Ambrosina do Carmo Buonaguide, 310</li>
+        <li class="contact-item"><strong>UBS Laranjeiras:</strong> 4899-3367 | Av. Pauliceia, 400 - Laranjeiras</li>
+        <li class="contact-item"><strong>UBS Portal:</strong> 4800-5024 | Rua Cardeal, em frente ao nº 458 - Portal</li>
+        <li class="contact-item"><strong>Transporte:</strong> 4605-8505</li>
+    </ul>
+</div>
+
+<!-- Estilo do Modal -->
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .close-button {
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-size: 20px;
+    }
+</style>
+
+<!-- Script para abrir e fechar o modal -->
+<script>
+    function openModal() {
+        document.getElementById('contactModal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('contactModal').style.display = 'none';
+    }
+</script>
+
 
   <!-- Botão Direitos e Deveres e Seção de Informações -->
   <button class="direitos-deveres-btn" id="direitosDeveresBtn">Direitos e Deveres</button>
   <div class="direitos-deveres-info" id="direitosDeveresInfo">
-    <h3>Direitos e Deveres dos ACS e Funcionários Públicos</h3>
+    <h3>Direitos e Deveres dos Cidadãos e Funcionários Públicos</h3>
     <p>A seguir, apresentamos os direitos e deveres que regem a atuação dos ACS e funcionários públicos, garantindo a qualidade do atendimento aos pacientes:</p>
     <ul>
       <li><strong>Direito à Saúde:</strong> Garantido pelo <strong>Art. 196 da Constituição Federal</strong>, o acesso universal e igualitário à saúde é um direito de todos.</li>
@@ -1117,5 +1211,13 @@ iframe {
       createACSMappingList();
     });
   </script>
+
+<script>
+  // Remover a tela de abertura após 3 segundos
+  setTimeout(() => {
+    document.querySelector('.splash-screen').remove();
+  }, 3000);
+</script>
+
 </body>
 </html>
