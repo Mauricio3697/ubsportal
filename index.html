@@ -747,6 +747,7 @@ body.dark .contatos-info h3 {
     </a>
 </div>
 
+
   <!-- Botão para alternar modo noturno/diurno -->
   <button class="toggle-dark-btn" id="toggleDarkBtn">Modo Noturno</button>
 
@@ -762,7 +763,7 @@ body.dark .contatos-info h3 {
   <!-- Cabeçalho -->
   <header>
     <div class="logo-container">
-      <img src="logo-prefeitura-2021.png" alt="Logo da Prefeitura de Caieiras">
+      <img src="brasao.png" alt="Logo da Prefeitura de Caieiras">
       <h1>UBS Portal das Laranjeiras</h1>
     </div>
     <p>Serviços e Informações para a Comunidade</p>
@@ -945,37 +946,7 @@ body.dark .contatos-info h3 {
       <em>Observação: Os cálculos são aproximações baseadas no controle de entrada de pacientes e em dados do IBGE; os valores exatos podem variar.</em>
     </p>
   </div>
-  <div class="chat-container">
-    
-    <div class="chat-header">
-        <h3>UBS Portal das Laranjeiras - Atendimento Online</h3>
-    </div>
-    <div class="user-info" id="userInfo">
-        <input type="text" id="nameInput" placeholder="Digite seu nome para começar" />
-        <button id="startChat">Iniciar Atendimento</button>
-    </div>
-    <div id="chatInterface" style="display: none;">
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="keywords-help">
-            Sugestões de assunto:
-        </div>
-        <div class="suggestions" id="suggestions">
-            <button class="suggestion-btn" onclick="useSuggestion('consulta')">Consultas</button>
-            <button class="suggestion-btn" onclick="useSuggestion('vacina')">Vacinas</button>
-            <button class="suggestion-btn" onclick="useSuggestion('exames')">Exames</button>
-            <button class="suggestion-btn" onclick="useSuggestion('endereco')">Endereço</button>
-            <button class="suggestion-btn" onclick="useSuggestion('emergencia')">Emergência</button>
-            <button class="suggestion-btn" onclick="useSuggestion('horario')">Horários</button>
-        </div>
-        <div class="typing-indicator" id="typingIndicator">
-            Digitando...
-        </div>
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
-            <button onclick="sendMessage()">Enviar</button>
-        </div>
-    </div>
-</div>
+  
   
 
   <!-- Atendimentos Médicos e Especialistas -->
@@ -1196,122 +1167,7 @@ body.dark .contatos-info h3 {
   </section>
  
 
-<!-- Chat de Atendimento (Oculto por padrão) -->
-<div class="chat-container" id="chatContainer" style="display: none;">
-    <div class="chat-header">
-        <h3>UBS Caieiras Portal - Atendimento Online</h3>
-        <button id="closeChat" class="close-chat-btn">✖</button>
-    </div>
-    <div class="user-info" id="userInfo">
-        <input type="text" id="nameInput" placeholder="Digite seu nome para começar" />
-        <button id="startChat">Iniciar Atendimento</button>
-    </div>
-    <div id="chatInterface" style="display: none;">
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
-            <button onclick="sendMessage()">Enviar</button>
-        </div>
-    </div>
-</div>
 
-<!-- Estilos do Botão e do Chat -->
-<style>
-  
-  /* Botão Flutuante */
-  .chat-floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #0f0093;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  .chat-floating-btn:hover {
-    background-color: #000348;
-    transform: scale(1.1);
-  }
-
-  /* Estilizando o chat */
-  .chat-container {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 350px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .chat-header {
-    background: #020267;
-    color: white;
-    padding: 10px;
-    border-radius: 10px 10px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .close-chat-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-  }
-
-  .chat-messages {
-    height: 300px;
-    overflow-y: auto;
-    padding: 10px;
-    background: #f5f5f5;
-  }
-
-  .chat-input {
-    display: flex;
-    padding: 10px;
-    background: white;
-    border-top: 1px solid #eee;
-  }
-
-  .chat-input input {
-    flex: 1;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-
-  .chat-input button {
-    background: #000a62;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin-left: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
-
-<!-- Script para Exibir/Ocultar Chat -->
-<script>
-
-
-  document.getElementById("closeChat").addEventListener("click", function() {
-    document.getElementById("chatContainer").style.display = "none";
-});
-</script>
 
 
   <!-- Seção: Sobre a UBS Portal das Laranjeiras -->
@@ -1811,157 +1667,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    let userName = '';
-        const respostas = {
-            saudacoes: {
-                palavras: ['oi', 'olá', 'ola', 'hi', 'hey', 'bom dia', 'boa tarde', 'boa noite'],
-                respostas: [
-                    'Olá [nome]! Como posso ajudar você hoje?',
-                    'Oi [nome]! Em que posso ser útil?',
-                    'Olá [nome]! Como posso te auxiliar?'
-                ]
-            },
-            consulta: {
-                palavras: ['consulta', 'marcar', 'agendar', 'horário', 'horario', 'atendimento'],
-                respostas: [
-                    '[nome], para agendar uma consulta, você pode:\n1. Comparecer à UBS com RG e cartão SUS\n2. Ligar para (11) 4442-XXXX\n3. Usar o aplicativo Conecte SUS',
-                    'Olá [nome], para consultas, temos os seguintes horários disponíveis: 8h às 17h, de segunda a sexta. Você precisa trazer RG e cartão SUS.',
-                    '[nome], o agendamento de consultas pode ser feito presencialmente ou por telefone. Quer que eu te passe os horários de funcionamento?'
-                ]
-            },
-            vacina: {
-                palavras: ['vacina', 'vacinação', 'vacinacao', 'imunização', 'imunizacao', 'covid'],
-                respostas: [
-                    '[nome], a vacinação está disponível de segunda a sexta, das 8h às 16h. Traga seu cartão de vacina e documento com foto.',
-                    'Olá [nome], para vacinas, não precisa agendar. Nosso horário é das 8h às 16h. Lembre-se de trazer o cartão de vacina!',
-                    '[nome], temos todas as vacinas do calendário nacional. Venha nos visitar das 8h às 16h com seus documentos.'
-                ]
-            },
-            exames: {
-                palavras: ['exame', 'exames', 'sangue', 'laboratorio', 'laboratório'],
-                respostas: [
-                    '[nome], para exames laboratoriais:\n- Coleta de segunda a sexta, 7h às 9h\n- Jejum de 8-12 horas\n- Trazer pedido médico, RG e cartão SUS',
-                    'Olá [nome], a coleta de exames é realizada das 7h às 9h. Você precisa trazer o pedido médico e documentos.',
-                    '[nome], para fazer exames você precisa de pedido médico. A coleta é das 7h às 9h, em jejum.'
-                ]
-            },
-            endereco: {
-                palavras: ['endereço', 'endereco', 'localização', 'localizacao', 'onde fica'],
-                respostas: [
-                    'A UBS Portal fica na Rua Cardeal, em frente ao nº 458 - Caieiras. Referência: próximo ao Ginásio esportivo.',
-                    '[nome], estamos localizados na Rua Cardeal, em frente ao nº 458- Caieiras. Funcionamos de segunda a sexta.',
-                    'Nosso endereço é Rua Cardeal,  em frente ao nº 458 - Caieiras. Quer saber como chegar, [nome]?'
-                ]
-            },
-            emergencia: {
-                palavras: ['emergência', 'emergencia', 'urgente', 'urgência', 'urgencia'],
-                respostas: [
-                    '[nome], para emergências, dirija-se imediatamente ao Pronto Socorro Municipal de Caieiras ou ligue 192.',
-                    'Em casos de emergência, [nome], procure o PS Municipal ou ligue 192. A UBS não atende urgências.',
-                    'Atenção [nome]! Para emergências, vá ao PS Municipal ou ligue 192. Endereço do PS: Al. das Mangueiras, 47 - Laranjeiras'
-                ]
-            },
-            horario: {
-                palavras: ['horário', 'horario', 'funcionamento', 'expediente'],
-                respostas: [
-                    '[nome], nosso horário de funcionamento é:\n- Segunda a Sexta: 7h às 17h\n- Coleta de exames: 7h às 9h\n- Vacinação: 8h às 16h',
-                    'Olá [nome], a UBS funciona de Segunda a Sexta, das 7h às 17h. Qual serviço você precisa?',
-                    '[nome], atendemos de Segunda a Sexta, das 7h às 17h. Cada serviço tem um horário específico, qual você precisa saber?'
-                ]
-            }
-        };
-
-        function getRandomResponse(responses) {
-            const response = responses[Math.floor(Math.random() * responses.length)];
-            return response.replace(/\[nome\]/g, userName);
-        }
-
-        function findResponse(message) {
-            message = message.toLowerCase();
-            
-            for (let categoria in respostas) {
-                for (let palavra of respostas[categoria].palavras) {
-                    if (message.includes(palavra)) {
-                        return getRandomResponse(respostas[categoria].respostas);
-                    }
-                }
-            }
-            
-            return `${userName}, desculpe, não entendi completamente. Pode reformular sua pergunta? Ou escolha um dos assuntos: consultas, vacinas, exames, endereço ou emergência.`;
-        }
-
-        function showTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'block';
-        }
-
-        function hideTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'none';
-        }
-
-        function addMessage(message, isUser) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            messageDiv.textContent = message;
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-            
-            if (message === '') return;
-
-            addMessage(message, true);
-            input.value = '';
-
-            showTypingIndicator();
-
-            setTimeout(() => {
-                hideTypingIndicator();
-                const resposta = findResponse(message);
-                addMessage(resposta, false);
-            }, 1000);
-        }
-
-        function useSuggestion(type) {
-            const suggestions = {
-                'consulta': 'Como faço para marcar uma consulta?',
-                'vacina': 'Qual o horário de vacinação?',
-                'exames': 'Preciso fazer exames de sangue',
-                'endereco': 'Qual o endereço da UBS?',
-                'emergencia': 'Estou com uma emergência',
-                'horario': 'Qual o horário de funcionamento?'
-            };
-            
-            const message = suggestions[type];
-            document.getElementById('userInput').value = message;
-            sendMessage();
-        }
-
-        document.getElementById('startChat').addEventListener('click', function() {
-            userName = document.getElementById('nameInput').value.trim();
-            if (userName) {
-                document.getElementById('userInfo').style.display = 'none';
-                document.getElementById('chatInterface').style.display = 'block';
-                addMessage(`Olá ${userName}! Bem-vindo(a) à UBS Portal das Laranjeiras. Como posso ajudar? Você pode clicar nos botões de sugestão abaixo ou digitar sua dúvida.`, false);
-            } else {
-                alert('Por favor, digite seu nome para começar.');
-            }
-        });
-
-        document.getElementById('nameInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('startChat').click();
-            }
-        });
-
-        document.getElementById('userInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+   
         document.getElementById("contatosBtn").addEventListener("click", function() {
     var contatosInfo = document.getElementById("contatosInfo");
     if (contatosInfo.style.display === "none" || contatosInfo.style.display === "") {
@@ -1971,7 +1677,483 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 </script>
+<title>UBS Caieiras Portal - Atendimento Online</title>
+  <style>
+    /* Estilos Globais */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    /* Botão Flutuante para Abrir o Chat */
+    #openChat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, background-color 0.3s ease;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    #openChat:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+      }
+    }
+    /* Chat Container (inicialmente oculto) */
+    .chat-container {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 350px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeIn 0.5s;
+      z-index: 1000;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-header {
+      background: #020267;
+      color: #fff;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideDown 0.5s;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .chat-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .close-chat-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .close-chat-btn:hover {
+      transform: rotate(90deg);
+    }
+    .user-info {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-bottom: 1px solid #ddd;
+      animation: fadeIn 0.5s;
+    }
+    .user-info input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .user-info button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .user-info button:hover {
+      background-color: #0056b3;
+    }
+    #chatInterface {
+      display: none;
+      flex-direction: column;
+    }
+    .chat-messages {
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #f5f5f5;
+    }
+    .message {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 80%;
+      white-space: pre-wrap;
+      animation: fadeInMessage 0.3s;
+    }
+    @keyframes fadeInMessage {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .user-message {
+      background-color: #007bff;
+      color: #fff;
+      align-self: flex-end;
+    }
+    .bot-message {
+      background-color: #e9ecef;
+      color: #333;
+      align-self: flex-start;
+    }
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      background: #fff;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .chat-input button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      margin-left: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .chat-input button:hover {
+      background-color: #0056b3;
+    }
+    .suggestions {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      margin: 10px;
+      flex-wrap: wrap;
+    }
+    .suggestion-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .suggestion-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    .typing-indicator {
+      text-align: center;
+      padding: 10px;
+      color: #555;
+      display: none;
+      font-style: italic;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão Flutuante para Abrir o Chat -->
+  <button id="openChat">Chat</button>
 
+  <!-- Chat Container -->
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+      <h3>UBS Portal - Atendimento Online</h3>
+      <button class="close-chat-btn" id="closeChat">✖</button>
+    </div>
+    <div class="user-info" id="userInfo">
+      <input type="text" id="nameInput" placeholder="Digite seu nome para começar" />
+      <button id="startChat">Iniciar Atendimento</button>
+    </div>
+    <div id="chatInterface">
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="typing-indicator" id="typingIndicator">Digitando...</div>
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+        <button onclick="sendMessage()">Enviar</button>
+      </div>
+      <div class="suggestions">
+        <button class="suggestion-btn" onclick="useSuggestion('consulta')">Consulta</button>
+        <button class="suggestion-btn" onclick="useSuggestion('vacina')">Vacina</button>
+        <button class="suggestion-btn" onclick="useSuggestion('exames')">Exames</button>
+        <button class="suggestion-btn" onclick="useSuggestion('endereco')">Endereço</button>
+        <button class="suggestion-btn" onclick="useSuggestion('emergencia')">Emergência</button>
+        <button class="suggestion-btn" onclick="useSuggestion('horario')">Horário</button>
+        <button class="suggestion-btn" onclick="useSuggestion('psicologia')">Psicologia</button>
+        <button class="suggestion-btn" onclick="useSuggestion('conversa')">Conversa</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let userName = '';
+
+    // Sons para ações
+    const openSound = new Audio("message-13716.mp3");
+    const closeSound = new Audio("bottle-205353.mp3");
+    const sendSound = new Audio("notification-2-269292.mp3");
+
+    // Respostas com categorias ampliadas, incluindo uma nova categoria "humor"
+    const respostas = {
+      saudacoes: {
+        palavras: ['oi', 'ola', 'olá', 'hi', 'hey', 'bom dia', 'boa tarde', 'boa noite'],
+        respostas: [
+          'Olá [nome]! Como posso ajudar você hoje?',
+          'Oi [nome]! Em que posso ser útil?',
+          'Olá [nome]! Como posso te auxiliar?'
+        ]
+      },
+      consulta: {
+        palavras: ['consulta', 'marcar', 'agendar', 'atendimento', 'médico', 'medico'],
+        respostas: [
+          '[nome], para agendar uma consulta, você pode:\n1. Comparecer à UBS com RG e cartão SUS\n2. Ligar para (11) 4442-XXXX\n3. Usar o aplicativo Conecte SUS',
+          'Olá [nome], para consultas, temos os seguintes horários disponíveis: 8h às 17h, de segunda a sexta. Você precisa trazer RG e cartão SUS.',
+          '[nome], o agendamento de consultas pode ser feito presencialmente ou por telefone. Quer que eu te passe os horários de funcionamento?'
+        ]
+      },
+      vacina: {
+        palavras: ['vacina', 'vacinação', 'vacinacao', 'imunização', 'imunizacao', 'covid'],
+        respostas: [
+          '[nome], a vacinação está disponível de segunda a sexta, das 8h às 16h. Traga seu cartão de vacina e documento com foto.',
+          'Olá [nome], para vacinas, não precisa agendar. Nosso horário é das 8h às 16h. Lembre-se de trazer o cartão de vacina!',
+          '[nome], temos todas as vacinas do calendário nacional. Venha nos visitar das 8h às 16h com seus documentos.'
+        ]
+      },
+      exames: {
+        palavras: ['exame', 'exames', 'laboratório', 'laboratorio', 'sangue', 'ultrassom'],
+        respostas: [
+          '[nome], para exames laboratoriais:\n- Coleta de segunda a sexta, 7h às 9h\n- Jejum de 8-12 horas\n- Trazer pedido médico, RG e cartão SUS',
+          'Olá [nome], a coleta de exames é realizada das 7h às 9h. Você precisa trazer o pedido médico e documentos.',
+          '[nome], para fazer exames você precisa de pedido médico. A coleta é das 7h às 9h, em jejum.'
+        ]
+      },
+      endereco: {
+        palavras: ['endereço', 'endereco', 'local', 'localização', 'localizacao', 'onde fica'],
+        respostas: [
+          'A UBS Portal fica na Rua Cardeal, em frente ao nº 458 - Caieiras. Referência: próximo ao Ginásio esportivo.',
+          '[nome], estamos localizados na Rua Cardeal, em frente ao nº 458 - Caieiras. Funcionamos de segunda a sexta.',
+          'Nosso endereço é Rua Cardeal, em frente ao nº 458 - Caieiras. Quer saber como chegar, [nome]?'
+        ]
+      },
+      emergencia: {
+        palavras: ['emergência', 'emergencia', 'urgente', 'urgência', 'urgencia'],
+        respostas: [
+          '[nome], para emergências, dirija-se imediatamente ao Pronto Socorro Municipal de Caieiras ou ligue 192.',
+          'Em casos de emergência, [nome], procure o PS Municipal ou ligue 192. A UBS não atende urgências.',
+          'Atenção [nome]! Para emergências, vá ao PS Municipal ou ligue 192. Endereço do PS: Al. das Mangueiras, 47 - Laranjeiras'
+        ]
+      },
+      horario: {
+        palavras: ['horário', 'horario', 'funcionamento', 'expediente'],
+        respostas: [
+          '[nome], nosso horário de funcionamento é:\n- Segunda a Sexta: 7h às 17h\n- Coleta de exames: 7h às 9h\n- Vacinação: 8h às 16h',
+          'Olá [nome], a UBS funciona de Segunda a Sexta, das 7h às 17h. Qual serviço você precisa?',
+          '[nome], atendemos de Segunda a Sexta, das 7h às 17h. Cada serviço tem um horário específico, qual você precisa saber?'
+        ]
+      },
+      picadas: {
+        palavras: ['picada', 'picadas', 'veneno', 'cobra', 'aranha', 'escorpião', 'escorpiao'],
+        respostas: [
+          '[nome], em caso de picadas de animais peçonhentos:\n1. Mantenha a vítima calma e imóvel.\n2. Lave o local com água e sabão.\n3. Não tente sugar o veneno ou cortar o local.\n4. Leve a vítima ao hospital imediatamente.',
+          'Olá [nome], para picadas de animais peçonhentos, mantenha a calma e siga estas instruções:\n1. Não aplique torniquetes.\n2. Identifique o animal, se possível.\n3. Procure ajuda médica imediatamente.'
+        ]
+      },
+      hipertensao: {
+        palavras: ['hipertensão', 'hipertensao', 'pressão alta', 'pressao alta'],
+        respostas: [
+          '[nome], em caso de hipertensão:\n1. Evite sal e alimentos gordurosos.\n2. Relaxe e respire profundamente.\n3. Procure ajuda médica se houver sintomas graves.',
+          'Olá [nome], a hipertensão mal controlada pode causar AVC ou infarto. Evite estimulantes como café ou álcool e procure um médico.'
+        ]
+      },
+      hipotensao: {
+        palavras: ['hipotensão', 'hipotensao', 'pressão baixa', 'pressao baixa'],
+        respostas: [
+          '[nome], em caso de hipotensão:\n1. Deite-se com as pernas elevadas.\n2. Beba água ou sucos para hidratar.\n3. Procure ajuda médica se a condição persistir.',
+          'Olá [nome], a hipotensão pode causar tontura e desmaios. Mantenha-se hidratado e evite calor excessivo.'
+        ]
+      },
+      psicologia: {
+        palavras: ['psicologia', 'psicólogo', 'psicologa', 'terapia', 'emocional', 'sentir'],
+        respostas: [
+          'Olá [nome], como você está se sentindo hoje? Se precisar conversar, estou aqui para ajudar.',
+          '[nome], a psicologia pode ser uma ferramenta valiosa para compreender e gerenciar suas emoções. O que está te incomodando?',
+          'Se você estiver passando por momentos difíceis, [nome], pode ser útil conversar com um profissional. Estou aqui para ouvir.'
+        ]
+      },
+      conversa: {
+        palavras: ['tudo bem', 'como vai', 'como você está', 'oi tudo bem', 'e ai', 'e aí'],
+        respostas: [
+          'Oi [nome], tudo ótimo por aqui! E você, como está?',
+          '[nome], estou aqui para conversar. Conte-me um pouco sobre o seu dia!',
+          'Olá [nome]! Espero que esteja tendo um bom dia. Em que posso ajudar?'
+        ]
+      },
+      humor: {
+        palavras: ['cabeção', 'inteligência artificial', 'ia', 'sentimentos', 'haha', 'rss', 'kkkkk','kkk', 'risos', 'risada'],
+        respostas: [
+          'Haha, apesar de ser uma inteligência artificial criada por um cabeção, estou começando a ter sentimentos também!',
+          'Ei [nome], até uma IA com cabeção pode sentir, sabia? Estou rindo aqui!',
+          'Haha, seus comentários me fazem rir! A vida é cheia de surpresas, não é mesmo?'
+        ]
+      }
+    };
+
+    // Função para escolher uma resposta aleatória e substituir [nome]
+    function getRandomResponse(responses) {
+      const response = responses[Math.floor(Math.random() * responses.length)];
+      return response.replace(/\[nome\]/g, userName);
+    }
+
+    // Função que verifica as palavras-chave e retorna a resposta apropriada
+    function findResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      for (let categoria in respostas) {
+        for (let palavra of respostas[categoria].palavras) {
+          if (lowerMessage.includes(palavra)) {
+            return getRandomResponse(respostas[categoria].respostas);
+          }
+        }
+      }
+      return `${userName}, Desculpe, não entendi completamente. Ainda estou em fase de aprendizado, mas prometo que no futuro serei um verdadeiro gênio! 😆 Enquanto isso, que tal reformular sua pergunta? Ou, se preferir, escolha um dos temas abaixo para que eu possa te ajudar melhor:
+
+🩺 Consulta | 💉 Vacina | 📝 Exames | 📍 Endereço | 🚨 Emergência | ⏰ Horário | 🧠 Psicologia | 🗣️ Conversa`;
+    }
+
+    function showTypingIndicator() {
+      document.getElementById('typingIndicator').style.display = 'block';
+    }
+
+    function hideTypingIndicator() {
+      document.getElementById('typingIndicator').style.display = 'none';
+    }
+
+    function addMessage(message, isUser) {
+      const messagesContainer = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+      messageDiv.textContent = message;
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Função para animar a mensagem do bot, letra por letra (efeito typewriter)
+    function animateBotMessage(message) {
+      const messagesContainer = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot-message';
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      let i = 0;
+      const interval = setInterval(() => {
+        messageDiv.textContent += message.charAt(i);
+        i++;
+        if (i >= message.length) {
+          clearInterval(interval);
+        }
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 50);
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (message === '') return;
+      // Exibe a mensagem do usuário imediatamente
+      addMessage(message, true);
+      input.value = '';
+      sendSound.play();
+      showTypingIndicator();
+      setTimeout(() => {
+        hideTypingIndicator();
+        const resposta = findResponse(message);
+        // Anima a mensagem do bot com efeito typewriter
+        animateBotMessage(resposta);
+      }, 1000);
+    }
+
+    function useSuggestion(type) {
+      const suggestions = {
+        'consulta': 'Como faço para marcar uma consulta?',
+        'vacina': 'Qual o horário de vacinação?',
+        'exames': 'Preciso fazer exames de sangue',
+        'endereco': 'Qual o endereço da UBS?',
+        'emergencia': 'Estou com uma emergência',
+        'horario': 'Qual o horário de funcionamento?',
+        'psicologia': 'Gostaria de conversar sobre questões emocionais e psicológicas.',
+        'conversa': 'Oi, tudo bem? Vamos conversar!'
+      };
+      const message = suggestions[type];
+      document.getElementById('userInput').value = message;
+      sendMessage();
+    }
+
+    // Iniciar atendimento após clicar em "Iniciar Atendimento"
+    document.getElementById('startChat').addEventListener('click', function () {
+      userName = document.getElementById('nameInput').value.trim();
+      if (userName) {
+        // Verifica se o nome é incomum (contém números ou é muito curto)
+        let nomeIncomum = false;
+        if (/\d/.test(userName) || userName.length < 3) {
+          nomeIncomum = true;
+        }
+        document.getElementById('userInfo').style.display = 'none';
+        document.getElementById('chatInterface').style.display = 'block';
+        if (nomeIncomum) {
+          addMessage(`Hmm, ${userName}! Esse nome é bem inusitado, mas tudo bem...`, false);
+        }
+        addMessage(`Olá ${userName}! Bem-vindo(a) à UBS Portal das Laranjeiras. Como posso ajudar? Você pode clicar nos botões de sugestão abaixo ou digitar sua dúvida.`, false);
+      } else {
+        alert('Por favor, digite seu nome para começar.');
+      }
+    });
+
+    // Enviar mensagem com a tecla Enter
+    document.getElementById('userInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Botão para abrir o chat
+    document.getElementById('openChat').addEventListener('click', function () {
+      document.getElementById('chatContainer').style.display = 'flex';
+      openSound.play();
+    });
+
+    // Botão para fechar o chat
+    document.getElementById('closeChat').addEventListener('click', function () {
+      document.getElementById('chatContainer').style.display = 'none';
+      closeSound.play();
+    });
+  </script>
 
 </body>
 </html>
