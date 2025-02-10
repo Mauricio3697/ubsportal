@@ -860,7 +860,7 @@ body.dark .contatos-info h3 {
   <button class="direitos-deveres-btn" id="direitosDeveresBtn">Direitos e Deveres</button>
   <div class="direitos-deveres-info" id="direitosDeveresInfo">
     <h3>Direitos e Deveres dos Cidadãos e Funcionários Públicos</h3>
-    <p>A seguir, apresentamos os direitos e deveres que regem a atuação dos Cidadãos e funcionários públicos, garantindo a qualidade do atendimento aos pacientes:</p>
+    <p>A seguir, destacamos os direitos e deveres que asseguram um atendimento de qualidade aos pacientes.</p>
     <ul>
       <li><strong>Direito à Saúde:</strong> Garantido pelo <strong>Art. 196 da Constituição Federal</strong>, o acesso universal e igualitário à saúde é um direito de todos.</li>
         <li><strong>Atendimento Digno:</strong> Conforme o <strong>Art. 3º da Lei 8.080/90</strong>, os cidadãos têm direito ao atendimento respeitoso e eficiente no SUS.</li>
@@ -1685,77 +1685,89 @@ document.addEventListener("DOMContentLoaded", function () {
       background-color: #f5f5f5;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      position: relative;
     }
-    /* Botão Flutuante para Abrir o Chat */
+
+    /* Botão de Chat - Garantindo visibilidade com animação "pulse" */
     #openChat {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #007bff;
+      background-color: #0056b3;
       color: #fff;
       border: none;
-      padding: 15px 20px;
+      padding: 15px 25px;
       border-radius: 50px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s ease, background-color 0.3s ease;
-      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 1;
+      visibility: visible;
       animation: pulse 2s infinite;
     }
+
     #openChat:hover {
-      background-color: #0056b3;
+      background-color: #004494;
       transform: scale(1.05);
     }
+
+    /* Animação "pulse" para o botão */
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-      }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
-    /* Chat Container (inicialmente oculto) */
+
+    /* Chat Container */
     .chat-container {
       position: fixed;
       bottom: 80px;
       right: 20px;
-      width: 350px;
+      width: 380px;
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       display: none;
       flex-direction: column;
       overflow: hidden;
       animation: fadeIn 0.5s;
-      z-index: 1000;
+      z-index: 9998;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Chat Header */
     .chat-header {
-      background: #020267;
+      background: linear-gradient(135deg, #020267, #0056b3);
       color: #fff;
-      padding: 12px 15px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      animation: slideDown 0.5s;
     }
-    @keyframes slideDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+
     .chat-header h3 {
       margin: 0;
       font-size: 16px;
     }
-    .close-chat-btn {
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toggle-audio-btn {
       background: none;
       border: none;
       color: #fff;
@@ -1763,395 +1775,515 @@ document.addEventListener("DOMContentLoaded", function () {
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
+    .toggle-audio-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .close-chat-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px;
+      transition: transform 0.3s ease;
+    }
+
     .close-chat-btn:hover {
       transform: rotate(90deg);
     }
+
+    /* Input Styling */
+    input[type="text"] {
+      text-align: center;
+      font-size: 14px;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      width: 90%;
+      margin: 8px auto;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+      outline: none;
+    }
+
+    /* User Info Section */
     .user-info {
-      padding: 10px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      border-bottom: 1px solid #ddd;
-      animation: fadeIn 0.5s;
+      align-items: center;
+      gap: 10px;
     }
-    .user-info input {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .user-info button {
+
+    #startChat {
       background-color: #007bff;
       color: #fff;
       border: none;
-      padding: 8px;
-      border-radius: 5px;
+      padding: 12px 24px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-weight: bold;
+      transition: all 0.3s ease;
     }
-    .user-info button:hover {
+
+    #startChat:hover {
       background-color: #0056b3;
+      transform: translateY(-2px);
     }
-    #chatInterface {
-      display: none;
-      flex-direction: column;
-    }
+
+    /* Messages Area */
     .chat-messages {
-      height: 250px;
+      height: 300px;
       overflow-y: auto;
-      padding: 10px;
-      background: #f5f5f5;
+      padding: 15px;
     }
+
     .message {
-      margin: 8px 0;
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 80%;
-      white-space: pre-wrap;
-      animation: fadeInMessage 0.3s;
+      margin: 10px;
+      padding: 12px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+      line-height: 1.4;
+      font-size: 14px;
     }
-    @keyframes fadeInMessage {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
     .user-message {
       background-color: #007bff;
       color: #fff;
       align-self: flex-end;
+      border-bottom-right-radius: 5px;
     }
+
     .bot-message {
-      background-color: #e9ecef;
+      background-color: #f0f2f5;
       color: #333;
       align-self: flex-start;
+      border-bottom-left-radius: 5px;
     }
+
+    /* Chat Input Area */
     .chat-input {
       display: flex;
-      padding: 10px;
-      border-top: 1px solid #ddd;
-      background: #fff;
+      padding: 15px;
+      gap: 10px;
+      border-top: 1px solid #dee2e6;
     }
+
     .chat-input input {
       flex: 1;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      margin: 0;
+      padding: 10px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
     }
+
     .chat-input button {
       background-color: #007bff;
       color: #fff;
       border: none;
-      padding: 8px 12px;
-      margin-left: 8px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
+
     .chat-input button:hover {
       background-color: #0056b3;
     }
+
+    /* Botão de microfone para entrada por voz */
+    .mic-btn {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .mic-btn:hover {
+      background-color: #218838;
+    }
+
+    /* Suggestions Area */
     .suggestions {
       display: flex;
-      gap: 5px;
-      justify-content: center;
-      margin: 10px;
       flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 10px;
+      background: #f8f9fa;
     }
+
     .suggestion-btn {
       background-color: #007bff;
       color: #fff;
       border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
+      padding: 8px 12px;
+      border-radius: 20px;
       cursor: pointer;
-      font-size: 12px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
+
     .suggestion-btn:hover {
       background-color: #0056b3;
       transform: translateY(-2px);
     }
-    .typing-indicator {
-      text-align: center;
-      padding: 10px;
-      color: #555;
-      display: none;
-      font-style: italic;
-      font-size: 14px;
-    }
   </style>
 </head>
 <body>
-  <!-- Botão Flutuante para Abrir o Chat -->
-  <button id="openChat">Chat</button>
+  <!-- Botão de Chat -->
+  <button id="openChat">
+    💬 Chat Online
+  </button>
 
-  <!-- Chat Container -->
+  <!-- Container do Chat -->
   <div class="chat-container" id="chatContainer">
     <div class="chat-header">
       <h3>UBS Portal - Atendimento Online</h3>
-      <button class="close-chat-btn" id="closeChat">✖</button>
+      <div class="header-buttons">
+        <button id="toggleAudio" class="toggle-audio-btn">🔊</button>
+        <button class="close-chat-btn" id="closeChat">✖</button>
+      </div>
     </div>
+
     <div class="user-info" id="userInfo">
       <input type="text" id="nameInput" placeholder="Digite seu nome para começar" />
       <button id="startChat">Iniciar Atendimento</button>
     </div>
-    <div id="chatInterface">
+
+    <div id="chatInterface" style="display: none;">
       <div class="chat-messages" id="chatMessages"></div>
-      <div class="typing-indicator" id="typingIndicator">Digitando...</div>
       <div class="chat-input">
         <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
         <button onclick="sendMessage()">Enviar</button>
+        <button class="mic-btn" onclick="startSpeechRecognition()">🎤</button>
       </div>
       <div class="suggestions">
-        <button class="suggestion-btn" onclick="useSuggestion('consulta')">Consulta</button>
-        <button class="suggestion-btn" onclick="useSuggestion('vacina')">Vacina</button>
-        <button class="suggestion-btn" onclick="useSuggestion('exames')">Exames</button>
-        <button class="suggestion-btn" onclick="useSuggestion('endereco')">Endereço</button>
-        <button class="suggestion-btn" onclick="useSuggestion('emergencia')">Emergência</button>
-        <button class="suggestion-btn" onclick="useSuggestion('horario')">Horário</button>
-        <button class="suggestion-btn" onclick="useSuggestion('psicologia')">Psicologia</button>
-        <button class="suggestion-btn" onclick="useSuggestion('conversa')">Conversa</button>
+        <button class="suggestion-btn" onclick="useSuggestion('consulta')">📅 Consulta</button>
+        <button class="suggestion-btn" onclick="useSuggestion('vacina')">💉 Vacina</button>
+        <button class="suggestion-btn" onclick="useSuggestion('exames')">🔬 Exames</button>
+        <button class="suggestion-btn" onclick="useSuggestion('telemedicina')">📱 Telemedicina</button>
+        <button class="suggestion-btn" onclick="useSuggestion('diagnostico')">🏥 Diagnóstico</button>
+        <button class="suggestion-btn" onclick="useSuggestion('hipotese')">⚕️ Hipótese Diagnóstica</button>
+        <button class="suggestion-btn" onclick="useSuggestion('endereco')">📍 Endereço</button>
+        <button class="suggestion-btn" onclick="useSuggestion('emergencia')">🚨 Emergência</button>
+        <button class="suggestion-btn" onclick="useSuggestion('horario')">⏰ Horário</button>
       </div>
     </div>
   </div>
 
   <script>
+    // Variáveis globais
     let userName = '';
+    let audioEnabled = true;
+    let conversationHistory = [];
 
-    // Sons para ações
-    const openSound = new Audio("message-13716.mp3");
-    const closeSound = new Audio("bottle-205353.mp3");
-    const sendSound = new Audio("notification-2-269292.mp3");
+    // Instanciando os sons (utilizando new Audio)
+    const openSound    = new Audio("message-13716.mp3");
+    const closeSound   = new Audio("bottle-205353.mp3");
+    const sendSound    = new Audio("notification-2-269292.mp3");
+    const receiveSound = new Audio("");
 
-    // Respostas com categorias ampliadas, incluindo uma nova categoria "humor"
-    const respostas = {
+    // Objeto com categorias de respostas aleatórias
+    const botResponses = {
       saudacoes: {
-        palavras: ['oi', 'ola', 'olá', 'hi', 'hey', 'bom dia', 'boa tarde', 'boa noite'],
-        respostas: [
-          'Olá [nome]! Como posso ajudar você hoje?',
-          'Oi [nome]! Em que posso ser útil?',
-          'Olá [nome]! Como posso te auxiliar?'
+        keywords: ['oi', 'olá', 'ola', 'bom dia', 'boa tarde', 'boa noite'],
+        responses: [
+          "Olá, tudo bem?",
+          "Oi, como posso ajudar?",
+          "Olá, em que posso ser útil hoje?",
+          "Olá! Como posso te atender?",
+          "Oi! O que posso fazer por você?",
+          "Olá! Precisa de algo?",
+          "Oi! Como posso ser útil?",
+          "Olá! Em que posso te auxiliar?",
+          "Oi! Como posso colaborar hoje?",
+          "Olá! Como posso facilitar seu dia?",
+          "Olá! Me diz como posso te ajudar!",
+          "Oi! Tem algo em que eu possa te ajudar?"
+
         ]
       },
       consulta: {
-        palavras: ['consulta', 'marcar', 'agendar', 'atendimento', 'médico', 'medico'],
-        respostas: [
-          '[nome], para agendar uma consulta, você pode:\n1. Comparecer à UBS com RG e cartão SUS\n2. Ligar para (11) 4442-XXXX\n3. Usar o aplicativo Conecte SUS',
-          'Olá [nome], para consultas, temos os seguintes horários disponíveis: 8h às 17h, de segunda a sexta. Você precisa trazer RG e cartão SUS.',
-          '[nome], o agendamento de consultas pode ser feito presencialmente ou por telefone. Quer que eu te passe os horários de funcionamento?'
+        keywords: ['consulta', 'marcar consulta', 'agendar'],
+        responses: [
+          "Você pode marcar sua consulta pelo nosso portal ou ligando para (11) 4800-5024.",
+          "Para agendar uma consulta, compareça à UBS com RG e cartão SUS.",
+          "Consulta agendada! Fale com seu ACS ou vá até a recepção para confirmar os detalhes."
         ]
       },
       vacina: {
-        palavras: ['vacina', 'vacinação', 'vacinacao', 'imunização', 'imunizacao', 'covid'],
-        respostas: [
-          '[nome], a vacinação está disponível de segunda a sexta, das 8h às 16h. Traga seu cartão de vacina e documento com foto.',
-          'Olá [nome], para vacinas, não precisa agendar. Nosso horário é das 8h às 16h. Lembre-se de trazer o cartão de vacina!',
-          '[nome], temos todas as vacinas do calendário nacional. Venha nos visitar das 8h às 16h com seus documentos.'
+        keywords: ['vacina', 'vacinação', 'vacinacao'],
+        responses: [
+          "A vacinação está disponível das 7h às 16h, de segunda a sexta.",
+          "Você pode se vacinar sem agendamento, basta apresentar seu cartão de vacina.",
+          "Vacina: traga seu documento e cartão de vacinação."
         ]
       },
       exames: {
-        palavras: ['exame', 'exames', 'laboratório', 'laboratorio', 'sangue', 'ultrassom'],
-        respostas: [
-          '[nome], para exames laboratoriais:\n- Coleta de segunda a sexta, 7h às 9h\n- Jejum de 8-12 horas\n- Trazer pedido médico, RG e cartão SUS',
-          'Olá [nome], a coleta de exames é realizada das 7h às 9h. Você precisa trazer o pedido médico e documentos.',
-          '[nome], para fazer exames você precisa de pedido médico. A coleta é das 7h às 9h, em jejum.'
+        keywords: ['exame', 'exames', 'laboratório'],
+        responses: [
+          "Os exames podem ser realizados das 7h às 10h, em jejum, consulte seu ACS sobre a abertura da agenda ou ligue para 4800-5024.",
+          "Para realizar exames, traga seu pedido médico e documentos. Consulte seu ACS para saber quando a agenda será aberta ou entre em contato pelo telefone 4800-5024, geralmente após o dia 20.",
+          "Para exames, tenha em mãos seu pedido médico e documentos. Consulte seu ACS sobre a abertura da agenda ou ligue para 4800-5024, geralmente após o dia 20."
+        ]
+      },
+      telemedicina: {
+        keywords: ['telemedicina', 'consulta online', 'atendimento remoto'],
+        responses: [
+          "A telemedicina está disponível está em planejamento.",
+          "Telemedicina: acesse o link de agendamento para consultas remotas, no momento está índisponivel!."
+         
+        ]
+      },
+      diagnostico: {
+        keywords: ['diagnóstico', 'diagnostico', 'avaliação', 'exame'],
+        responses: [
+          "Para um diagnóstico, precisamos de uma avaliação completa. Marque uma consulta.",
+          "O diagnóstico deve ser feito por um profissional. Agende uma consulta.",
+          "Entre em contato com nossa equipe para uma avaliação diagnóstica detalhada."
+        ]
+      },
+      hipotese: {
+        keywords: ['febre', 'dor nas costas', 'ansiedade', 'repouso', 'hospital'],
+        responses: [
+          "Você está com febre e dor nas costas; isso pode ser dengue. Vá a um hospital, faça repouso e coma alimentos leves.",
+          "Se você sente ansiedade, procure um parque, olhe a natureza e dedique-se a hobbies. Se os sintomas persistirem, consulte um psicólogo."
         ]
       },
       endereco: {
-        palavras: ['endereço', 'endereco', 'local', 'localização', 'localizacao', 'onde fica'],
-        respostas: [
-          'A UBS Portal fica na Rua Cardeal, em frente ao nº 458 - Caieiras. Referência: próximo ao Ginásio esportivo.',
-          '[nome], estamos localizados na Rua Cardeal, em frente ao nº 458 - Caieiras. Funcionamos de segunda a sexta.',
-          'Nosso endereço é Rua Cardeal, em frente ao nº 458 - Caieiras. Quer saber como chegar, [nome]?'
+        keywords: ['endereço', 'endereco', 'localização', 'localizacao'],
+        responses: [
+          "A UBS está localizada na Rua Cardeal, nº 458 - Caieiras.",
+          "Nosso endereço é Rua Cardeal, em frente ao Ginásio Esportivo.",
+          "Você encontra a UBS na Rua Cardeal, nº 458 - Caieiras."
         ]
       },
       emergencia: {
-        palavras: ['emergência', 'emergencia', 'urgente', 'urgência', 'urgencia'],
-        respostas: [
-          '[nome], para emergências, dirija-se imediatamente ao Pronto Socorro Municipal de Caieiras ou ligue 192.',
-          'Em casos de emergência, [nome], procure o PS Municipal ou ligue 192. A UBS não atende urgências.',
-          'Atenção [nome]! Para emergências, vá ao PS Municipal ou ligue 192. Endereço do PS: Al. das Mangueiras, 47 - Laranjeiras'
+        keywords: ['emergência', 'emergencia', 'urgência'],
+        responses: [
+          "Em caso de emergência, dirija-se imediatamente ao Pronto Socorro ou ligue 192.",
+          "Para emergências, procure o Pronto Socorro municipal.",
+          "Emergência: ligue 192 ou vá ao hospital mais próximo."
         ]
       },
       horario: {
-        palavras: ['horário', 'horario', 'funcionamento', 'expediente'],
-        respostas: [
-          '[nome], nosso horário de funcionamento é:\n- Segunda a Sexta: 7h às 17h\n- Coleta de exames: 7h às 9h\n- Vacinação: 8h às 16h',
-          'Olá [nome], a UBS funciona de Segunda a Sexta, das 7h às 17h. Qual serviço você precisa?',
-          '[nome], atendemos de Segunda a Sexta, das 7h às 17h. Cada serviço tem um horário específico, qual você precisa saber?'
-        ]
-      },
-      picadas: {
-        palavras: ['picada', 'picadas', 'veneno', 'cobra', 'aranha', 'escorpião', 'escorpiao'],
-        respostas: [
-          '[nome], em caso de picadas de animais peçonhentos:\n1. Mantenha a vítima calma e imóvel.\n2. Lave o local com água e sabão.\n3. Não tente sugar o veneno ou cortar o local.\n4. Leve a vítima ao hospital imediatamente.',
-          'Olá [nome], para picadas de animais peçonhentos, mantenha a calma e siga estas instruções:\n1. Não aplique torniquetes.\n2. Identifique o animal, se possível.\n3. Procure ajuda médica imediatamente.'
-        ]
-      },
-      hipertensao: {
-        palavras: ['hipertensão', 'hipertensao', 'pressão alta', 'pressao alta'],
-        respostas: [
-          '[nome], em caso de hipertensão:\n1. Evite sal e alimentos gordurosos.\n2. Relaxe e respire profundamente.\n3. Procure ajuda médica se houver sintomas graves.',
-          'Olá [nome], a hipertensão mal controlada pode causar AVC ou infarto. Evite estimulantes como café ou álcool e procure um médico.'
-        ]
-      },
-      hipotensao: {
-        palavras: ['hipotensão', 'hipotensao', 'pressão baixa', 'pressao baixa'],
-        respostas: [
-          '[nome], em caso de hipotensão:\n1. Deite-se com as pernas elevadas.\n2. Beba água ou sucos para hidratar.\n3. Procure ajuda médica se a condição persistir.',
-          'Olá [nome], a hipotensão pode causar tontura e desmaios. Mantenha-se hidratado e evite calor excessivo.'
-        ]
-      },
-      psicologia: {
-        palavras: ['psicologia', 'psicólogo', 'psicologa', 'terapia', 'emocional', 'sentir'],
-        respostas: [
-          'Olá [nome], como você está se sentindo hoje? Se precisar conversar, estou aqui para ajudar.',
-          '[nome], a psicologia pode ser uma ferramenta valiosa para compreender e gerenciar suas emoções. O que está te incomodando?',
-          'Se você estiver passando por momentos difíceis, [nome], pode ser útil conversar com um profissional. Estou aqui para ouvir.'
-        ]
-      },
-      conversa: {
-        palavras: ['tudo bem', 'como vai', 'como você está', 'oi tudo bem', 'e ai', 'e aí'],
-        respostas: [
-          'Oi [nome], tudo ótimo por aqui! E você, como está?',
-          '[nome], estou aqui para conversar. Conte-me um pouco sobre o seu dia!',
-          'Olá [nome]! Espero que esteja tendo um bom dia. Em que posso ajudar?'
-        ]
-      },
-      humor: {
-        palavras: ['cabeção', 'inteligência artificial', 'ia', 'sentimentos', 'haha', 'rss', 'kkkkk','kkk', 'risos', 'risada'],
-        respostas: [
-          'Haha, apesar de ser uma inteligência artificial criada por um cabeção, estou começando a ter sentimentos também!',
-          'Ei [nome], até uma IA com cabeção pode sentir, sabia? Estou rindo aqui!',
-          'Haha, seus comentários me fazem rir! A vida é cheia de surpresas, não é mesmo?'
+        keywords: ['horário', 'horario', 'expediente'],
+        responses: [
+          "Nosso horário de funcionamento é de segunda a sexta, das 7h às 17h.",
+          "Atendemos de segunda a sexta, com coletas entre 7h e 10h às terças e quintas.",
+          "Funcionamento: 7h às 17h, com horários específicos para cada serviço."
         ]
       }
     };
 
-    // Função para escolher uma resposta aleatória e substituir [nome]
-    function getRandomResponse(responses) {
-      const response = responses[Math.floor(Math.random() * responses.length)];
-      return response.replace(/\[nome\]/g, userName);
-    }
+    // Respostas de fallback (caso nenhuma categoria seja identificada)
+    const fallbackResponses = [
+      `Olá ${userName}, não entendi muito bem. Poderia reformular?`,
+      `Desculpe, ${userName}, não compreendi. Pode explicar melhor?`,
+      `Oi ${userName}, poderia dar mais detalhes, por favor?`
+    ];
 
-    // Função que verifica as palavras-chave e retorna a resposta apropriada
-    function findResponse(message) {
+    // Retorna uma resposta aleatória com base no texto do usuário
+    function getRandomBotResponse(message) {
       const lowerMessage = message.toLowerCase();
-      for (let categoria in respostas) {
-        for (let palavra of respostas[categoria].palavras) {
-          if (lowerMessage.includes(palavra)) {
-            return getRandomResponse(respostas[categoria].respostas);
+      for (let category in botResponses) {
+        for (let keyword of botResponses[category].keywords) {
+          if (lowerMessage.includes(keyword)) {
+            const responses = botResponses[category].responses;
+            return responses[Math.floor(Math.random() * responses.length)];
           }
         }
       }
-      return `${userName}, Desculpe, não entendi completamente. Ainda estou em fase de aprendizado, mas prometo que no futuro serei um verdadeiro gênio! 😆 Enquanto isso, que tal reformular sua pergunta? Ou, se preferir, escolha um dos temas abaixo para que eu possa te ajudar melhor:
-
-🩺 Consulta | 💉 Vacina | 📝 Exames | 📍 Endereço | 🚨 Emergência | ⏰ Horário | 🧠 Psicologia | 🗣️ Conversa`;
+      return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
     }
 
-    function showTypingIndicator() {
-      document.getElementById('typingIndicator').style.display = 'block';
+    // Retorna saudação baseada no horário
+    function getGreeting() {
+      const now = new Date();
+      const hour = now.getHours();
+      if (hour >= 6 && hour < 12) return "Bom dia";
+      else if (hour >= 12 && hour < 18) return "Boa tarde";
+      else return "Boa noite";
     }
 
-    function hideTypingIndicator() {
-      document.getElementById('typingIndicator').style.display = 'none';
+    // Reproduz a mensagem via síntese de voz (se áudio estiver ativado)
+    function speakMessage(message) {
+      if (!audioEnabled) return;
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(message);
+        utterance.lang = 'pt-BR';
+        speechSynthesis.speak(utterance);
+      }
     }
 
-    function addMessage(message, isUser) {
-      const messagesContainer = document.getElementById('chatMessages');
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-      messageDiv.textContent = message;
-      messagesContainer.appendChild(messageDiv);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-
-    // Função para animar a mensagem do bot, letra por letra (efeito typewriter)
+    // Exibe a mensagem do bot com efeito "typewriter" e reproduz o som de recebimento
     function animateBotMessage(message) {
       const messagesContainer = document.getElementById('chatMessages');
       const messageDiv = document.createElement('div');
       messageDiv.className = 'message bot-message';
       messagesContainer.appendChild(messageDiv);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Reproduz o som de recebimento assim que o bot envia a mensagem
+      if (audioEnabled) {
+        receiveSound.play();
+      }
+
       let i = 0;
       const interval = setInterval(() => {
         messageDiv.textContent += message.charAt(i);
         i++;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
         if (i >= message.length) {
           clearInterval(interval);
+          // Após a digitação completa, utiliza a síntese de voz
+          speakMessage(message);
         }
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }, 50);
     }
 
-    function sendMessage() {
+    // Adiciona a mensagem do usuário
+    function addUserMessage(message) {
+      const messagesContainer = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user-message';
+      messageDiv.textContent = message;
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Exemplo de função para buscar resposta de uma API externa
+    async function fetchResponseFromAPI(message) {
+      try {
+        const response = await fetch('https://api.example.com/chat?message=' + encodeURIComponent(message));
+        const data = await response.json();
+        return data.response;
+      } catch (error) {
+        console.error('Erro na API:', error);
+        return null;
+      }
+    }
+
+    // Envia a mensagem do usuário e processa a resposta do bot
+    async function sendMessage() {
       const input = document.getElementById('userInput');
       const message = input.value.trim();
       if (message === '') return;
-      // Exibe a mensagem do usuário imediatamente
-      addMessage(message, true);
-      input.value = '';
+
+      // Reproduz o som de envio
       sendSound.play();
-      showTypingIndicator();
-      setTimeout(() => {
-        hideTypingIndicator();
-        const resposta = findResponse(message);
-        // Anima a mensagem do bot com efeito typewriter
-        animateBotMessage(resposta);
-      }, 1000);
+
+      addUserMessage(message);
+      conversationHistory.push({ sender: 'user', text: message });
+      input.value = '';
+
+      let apiResponse = await fetchResponseFromAPI(message);
+      let botResponse = '';
+
+      if (apiResponse && apiResponse.trim() !== "") {
+        botResponse = apiResponse;
+      } else {
+        botResponse = getRandomBotResponse(message);
+      }
+
+      conversationHistory.push({ sender: 'bot', text: botResponse });
+      animateBotMessage(botResponse);
     }
 
+    // Utiliza as sugestões predefinidas
     function useSuggestion(type) {
       const suggestions = {
         'consulta': 'Como faço para marcar uma consulta?',
         'vacina': 'Qual o horário de vacinação?',
-        'exames': 'Preciso fazer exames de sangue',
+        'exames': 'Preciso fazer exames',
+        'telemedicina': 'Como funciona a telemedicina?',
+        'diagnostico': 'Gostaria de uma avaliação diagnóstica',
+        'hipotese': 'Estou com febre e dor nas costas',
         'endereco': 'Qual o endereço da UBS?',
         'emergencia': 'Estou com uma emergência',
-        'horario': 'Qual o horário de funcionamento?',
-        'psicologia': 'Gostaria de conversar sobre questões emocionais e psicológicas.',
-        'conversa': 'Oi, tudo bem? Vamos conversar!'
+        'horario': 'Qual o horário de funcionamento?'
       };
       const message = suggestions[type];
       document.getElementById('userInput').value = message;
       sendMessage();
     }
 
-    // Iniciar atendimento após clicar em "Iniciar Atendimento"
-    document.getElementById('startChat').addEventListener('click', function () {
-      userName = document.getElementById('nameInput').value.trim();
-      if (userName) {
-        // Verifica se o nome é incomum (contém números ou é muito curto)
-        let nomeIncomum = false;
-        if (/\d/.test(userName) || userName.length < 3) {
-          nomeIncomum = true;
-        }
-        document.getElementById('userInfo').style.display = 'none';
-        document.getElementById('chatInterface').style.display = 'block';
-        if (nomeIncomum) {
-          addMessage(`Hmm, ${userName}! Esse nome é bem inusitado, mas tudo bem...`, false);
-        }
-        addMessage(`Olá ${userName}! Bem-vindo(a) à UBS Portal das Laranjeiras. Como posso ajudar? Você pode clicar nos botões de sugestão abaixo ou digitar sua dúvida.`, false);
+    // Inicia o reconhecimento de voz para entrada por áudio
+    function startSpeechRecognition() {
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'pt-BR';
+        recognition.start();
+        recognition.onresult = function(event) {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById('userInput').value = transcript;
+          sendMessage();
+        };
+        recognition.onerror = function(event) {
+          console.error('Erro no reconhecimento de voz:', event.error);
+        };
       } else {
-        alert('Por favor, digite seu nome para começar.');
+        alert('Desculpe, o reconhecimento de voz não é suportado neste navegador.');
       }
-    });
+    }
 
-    // Enviar mensagem com a tecla Enter
-    document.getElementById('userInput').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
+    // Configuração dos event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Exibe o botão de chat
+      const chatButton = document.getElementById('openChat');
+      chatButton.style.display = 'flex';
 
-    // Botão para abrir o chat
-    document.getElementById('openChat').addEventListener('click', function () {
-      document.getElementById('chatContainer').style.display = 'flex';
-      openSound.play();
-    });
+      // Abre o chat e reproduz o som de abertura
+      document.getElementById('openChat').addEventListener('click', function() {
+        document.getElementById('chatContainer').style.display = 'flex';
+        openSound.play();
+      });
 
-    // Botão para fechar o chat
-    document.getElementById('closeChat').addEventListener('click', function () {
-      document.getElementById('chatContainer').style.display = 'none';
-      closeSound.play();
+      // Fecha o chat e reproduz o som de fechamento
+      document.getElementById('closeChat').addEventListener('click', function() {
+        document.getElementById('chatContainer').style.display = 'none';
+        closeSound.play();
+      });
+
+      // Alterna a ativação/desativação do áudio
+      document.getElementById('toggleAudio').addEventListener('click', function() {
+        audioEnabled = !audioEnabled;
+        this.textContent = audioEnabled ? '🔊' : '🔇';
+      });
+
+      // Inicia o atendimento ao clicar em "Iniciar Atendimento"
+      document.getElementById('startChat').addEventListener('click', function() {
+        userName = document.getElementById('nameInput').value.trim();
+        if (userName) {
+          document.getElementById('userInfo').style.display = 'none';
+          document.getElementById('chatInterface').style.display = 'block';
+          const welcomeMsg = `${getGreeting()} ${userName}! Como posso ajudar você hoje?`;
+          conversationHistory.push({ sender: 'bot', text: welcomeMsg });
+          animateBotMessage(welcomeMsg);
+        } else {
+          alert('Por favor, digite seu nome para começar.');
+        }
+      });
+
+      // Envia a mensagem ao pressionar a tecla Enter
+      document.getElementById('userInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
     });
   </script>
 
